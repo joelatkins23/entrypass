@@ -1,0 +1,226 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content mt-40 bgwhite boxshadow-2 border-radius8">
+            <div class="">
+                <div class="d-flex pt-0 pb-15 pl-20 pr-20">
+                    <div class="ttle-h fontsize-14 fontfamily-medium color333">Business Registration</div>
+                    <div class="ml-auto">
+                        <button class="btn widthfit btn-border-b btn-rad-24 btn-small">Export </button>
+                        <span class="ml-20"><button type="button" (click)="createbusiness()" class="btn btn-rad-24 widthfit btn-small">Add New</button></span>
+                    </div>
+                </div>
+
+                <div class="p-3">
+                    <table class="table table-hover table-responsive" datatable [dtOptions]="dtOptions">
+                        <thead>
+                            <tr>
+                                <th class="text-center"></th>
+                                <th class="text-center">S.No.</th>
+                                <th>Business Name</th>
+                                <th class="text-center">Contact Person</th>
+                                <th class="text-center">Mobile No.</th>
+                                <th class="text-center">Email ID</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-left">Location</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div ngbDropdown class="dropdown tbl-dropdown open">
+                                        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-ellipsis-h"></i></button>
+                                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <a class="dropdown-item waves-light waves-effect" (click)="editbusiness()"><i class="ti-pencil-alt"></i>Edit</a>
+                                            <a class="dropdown-item waves-light waves-effect" (click)="viewbusiness()"><i class="ti-eye"></i>Audit Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">1</td>
+                                <td>Spire Health Care Ltd.</td>
+                                <td class="text-left">David Mcdonald</td>
+                                <td class="text-center">+1 246 222 4444</td>
+                                <td class="text-center">davidma@gmail.com</td>
+                                <td class="text-center">11 Sep 2020</td>
+                                <td class="text-center">Warrens, St Michael</td>
+                                <td class="text-center">Active</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

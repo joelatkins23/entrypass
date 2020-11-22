@@ -1,0 +1,9 @@
+{
+    "name": "Entrypass",
+    "short_name": "Entrypass",
+    "theme_color": "#fff",
+    "background_color": "#fff",
+    "display": "standalone",
+    "scope": "./",
+    "start_url": "./"
+}

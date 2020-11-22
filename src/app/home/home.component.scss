@@ -1,0 +1,70 @@
+.line-container {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+.gauge-container {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+.home-section5 {
+    background-image: url(../../assets/images/auth/bgimg3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+section.home-section1.home-banner-sec .carousel.slide {
+    width: 100%;
+}
+
+img.bnr-sl-img {
+    margin: 0 auto;
+    display: block;
+}
+
+.carousel-indicators li::before {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    content: "";
+}
+
+.carousel-indicators li::after {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    content: "";
+}
+
+ul.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    background: #8DC0F3;
+    border-radius: 50px;
+    display: block !important;
+    margin: 5px 0;
+    border-top: unset;
+    border-bottom: unset;
+    box-sizing: border-box;
+}
+
+.carousel-indicators .active {
+    background-color: #007FFF;
+    position: relative;
+    border: 4px solid #007FFF;
+}
+
+.lst-block-hm-sec3 {
+    box-shadow: 0 3px 15px 0 rgb(0 0 0 / 16%);
+    border-radius: 5px;
+}

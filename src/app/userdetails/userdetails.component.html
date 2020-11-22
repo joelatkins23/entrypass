@@ -1,0 +1,110 @@
+<ngx-spinner type="ball-pulse-sync" color="#e74c3c">
+  <p style="font-size: 20px; color: #e74c3c">{{'Please wait...' | translate}}</p>
+</ngx-spinner>
+<div class="row">
+  <div class="col-md-12">
+    <div class="right-sidebar-content bgwhite boxshadow-2 border-radius8 pt-25 pb-25 pl-40 pr-50">
+        <div class="mb-50">
+          <div class="ttle-h fontsize-14 fontfamily-medium color333">Edit User Registration</div>
+        </div>
+        <div class="row">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+            <form>
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="Name" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="User Name" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <div class="btn-group multi_sigle_select inp_select">
+                      <button data-toggle="dropdown" class="btn btn-default dropdown-toggle mss_sl_btn" aria-expanded="false">Gender</button>
+                      <ul class="dropdown-menu mss_sl_btn_dm" >
+                          <li class="radiobox-image"><input type="radio" id="id_283" name="state_name" class="" value="283"><label for="id_283">Male</label></li>                   
+                          <li class="radiobox-image"><input type="radio" id="id_284" name="state_name" class="" value="284"><label for="id_284">Female</label></li>
+                        </ul>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="Date of Birth" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp phone-o-field">
+                    <div class="row">
+                      <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                        <div class="relative">
+                          <input type="text" name="" placeholder="+1 246" class="form-control input-tp-1">
+                          <img src="assets/images/flag.png" class="flag-img">
+                        </div>
+                      </div>
+                      <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                        <input type="text" name="" placeholder="Phone Number" class="form-control input-tp-1">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="ID Number" class="form-control input-tp-1">
+                 </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="Address 1" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="Address 2" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="State/Parish/Region" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="Country" class="form-control input-tp-1">
+                 </div>
+                </div>
+                
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <input type="text" name="" placeholder="Email Address" class="form-control input-tp-1">
+                 </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="form-group input-rw-tp">
+                    <div class="btn-group multi_sigle_select inp_select">
+                      <button data-toggle="dropdown" class="btn btn-default dropdown-toggle mss_sl_btn" aria-expanded="false">Status</button>
+                      <ul class="dropdown-menu mss_sl_btn_dm" >
+                          <li class="radiobox-image"><input type="radio" id="id_284" name="state_name" class="" value="283"><label for="id_284">Primary</label></li>                   
+                          <li class="radiobox-image"><input type="radio" id="id_285" name="state_name" class="" value="284"><label for="id_285">Secondary</label></li>
+                        </ul>
+                      </div>
+                  </div>
+                </div>              
+             </div>
+             <div class="mt-40">
+              <div class="">
+                <button class="btn btn-gray width150 btn-rad-24">Cancel</button>
+                <span class="ml-15"><button class="btn width150 btn-rad-24" (click)="update();">Update</button></span>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
