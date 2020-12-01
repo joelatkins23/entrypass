@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BasicRegComponent implements OnInit {
 
+  phone_list: any;
   constructor(
     private api: ApisService,
     private toastyService: ToastyService,
@@ -24,6 +25,7 @@ export class BasicRegComponent implements OnInit {
 
   ngOnInit() {
     document.querySelector('body').setAttribute('themebg-pattern', 'theme1');
+    this.getphonelist();
   }
   gotopayment(){
     // const navData: NavigationExtras = {
@@ -32,5 +34,14 @@ export class BasicRegComponent implements OnInit {
     //   }
     // };
     this.router.navigate(['auth/payment']);
+  }
+  getphonelist(){
+    this.api.getphonelist().subscribe((resp) => {
+     console.log(resp);
+     this.phone_list=resp;
+    }, error => {
+    //   this.service.hideLoading();
+        console.log(error);
+      });
   }
 }

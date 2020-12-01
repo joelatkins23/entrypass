@@ -19,6 +19,7 @@ export class AddbusinessComponent implements OnInit {
   banner_to_upload: any = '';
   coverImage: any = '';
   id: any;
+  phone_list: any;
   constructor(
     private route: ActivatedRoute,
     private api: ApisService,
@@ -28,6 +29,7 @@ export class AddbusinessComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getphonelist();
     this.route.queryParams.subscribe(data => {
       this.new = data.register === 'true' ? true : false;
       if (!this.new && data.id) {
@@ -45,8 +47,17 @@ export class AddbusinessComponent implements OnInit {
         });
       }
     });
+    
   }
-
+  getphonelist(){
+    this.api.getphonelist().subscribe((resp) => {
+     console.log(resp);
+     this.phone_list=resp;
+    }, error => {
+    //   this.service.hideLoading();
+        console.log(error);
+      });
+  }
   error(message) {
     const toastOptions: ToastOptions = {
       title: this.api.translate('Error'),

@@ -29,6 +29,10 @@ export class ApisService {
     private http: HttpClient,
     private translateService: TranslateService
   ) { }
+  
+  public getphonelist(){
+    return this.http.get("https://restcountries.eu/rest/v2/all")
+  }
 
   public checkAuth(type) {
     return new Promise((resolve, reject) => {
