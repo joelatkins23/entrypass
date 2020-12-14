@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content mt-40 bgwhite boxshadow-2 border-radius8 pt-30 pb-30 pl-30 pr-30 mb-30">
+            <div class="container">
+                <div class="text-center">
+                    <h4 class="fontsize-26 fontfamily-bold colorblack text-uppercase mt-25 mb-10" *ngIf="new">Add Location</h4>
+                    <h4 class="fontsize-26 fontfamily-bold colorblack text-uppercase mt-25 mb-10" *ngIf="!new">Edit Location</h4>
+                    <p class="fontsize-14 fontfamily-medium color4848 mb-50">Enter Your business location here</p>
+                </div>
+                <div class="row">
+                   
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 m-auto">
+                        <form [formGroup]="form" (ngSubmit)="submit()">
+                            <div class="add-location-form bggray1 pl-10 pr-10 pt-10">
+                                <div class="addlocationrow relative">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <input type="text" name="" [(ngModel)]="Address1" [ngModelOptions]="{standalone: true}" placeholder="ABC Inc." class="form-control input-tp-1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <input type="text" name=""  [(ngModel)]="Address2" [ngModelOptions]="{standalone: true}" placeholder="Warrens, St. Micheal" class="form-control input-tp-1">
+                                            </div>
+                                        </div> 
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <select name="" id=""  [(ngModel)]="Measurestatus" [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                                    <option value="">Measure Temperature</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <select name="" id="" [(ngModel)]="Measuresunit" [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                                    <option value="">Measurement</option>
+                                                    <option value="Celsius">Celsius</option>
+                                                    <option value="Fahrenheit">Fahrenheit</option>
+                                                    <option value="Kelvin">Kelvin</option>
+                                                </select>
+                                            </div>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                                <div class="addlocationrow relative" *ngFor="let item of childdata; let i = index;">                                    
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <select name="" id=""  [(ngModel)]="item.Status" [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                                    <option value="Primary">Primary</option>
+                                                    <option value="Secondary">Secondary</option>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <input type="text" name="" [(ngModel)]="item.Name" [ngModelOptions]="{standalone: true}"  placeholder="David Fadnis" class="form-control input-tp-1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group input-rw-tp">
+                                                <ng-select2 
+                                                    [(ngModel)]="item.Email"
+                                                    [data]="persionemail"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [placeholder]="'Select Email'">		
+                                                </ng-select2>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <a (click)="onadd()" class="loc-plus-a"><img src="assets/images/plus.png" class="loc-icn"  *ngIf="i==0"></a>
+                                    <a (click)="ondelete(item,item.Id,i)" class="loc-plus-a"><img src="assets/images/delete.png" class="loc-icn delete-icon" *ngIf="i>0"> </a>
+                                </div>                           
+                            </div>
+                            <div class="mt-40">
+                                <div class="">
+                                    <button type="button" class="btn btn-gray width150 btn-rad-24" (click)="back()">Cancel</button>
+                                    <span class="ml-15"><button  class="btn width150 btn-rad-24" type="submit" *ngIf="new">Save</button></span>
+                                    <span class="ml-15"><button  class="btn width150 btn-rad-24" type="submit" *ngIf="!new">Update</button></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

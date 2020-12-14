@@ -1,0 +1,129 @@
+<div class="web-sign-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 m-auto">
+                <div class="bgwhite boxshadow-2 border-radius8 mt-50 pt-20 pb-20 pl-15 pr-15 mb-50">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-6 col-md-12 col-sm-12 col-12 m-auto">
+                            <div class="sign-bock bgwhite pt-10 pb-10 pl-10 pr-10">
+                                <div class="text-center">
+                                    <!-- <img src="images/logo.svg" class="sign-logo"> -->
+                                    <h4 class="fontsize-26 fontfamily-bold colorblack text-uppercase mt-0 mb-10">Sign Up</h4>
+                                    <p class="fontsize-14 fontfamily-medium color4848 mb-50">Enter the basic detail to register</p>
+                                    <!-- <div class="premium-package-block d-flex pt-20 pb-20 pl-25 pr-25 text-left border-radius8 bggray1 mb-15">
+                                        <div class="premium-package-block-lft">
+                                            <h6 class="fontfamily-medium fontsize-16 colorblack mb-1">Premium Package</h6>
+                                            <h5 class="fontfamily-medium fontsize-24 colorblue1 mb-0">$49</h5>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <p class="mb-0 fontfamily-medium fontsize-12 color4848">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum euismod rutrum. Nulla pellentesque, massa eget tempus molestie, metus dolor eleifend orci, eu malesuada ante metus non ipsum.</p>
+                                        </div>
+                                    </div> -->
+                                    <form [formGroup]="form" (ngSubmit)="submit()">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <input type="text"[(ngModel)]="Name"  [ngModelOptions]="{standalone: true}" placeholder="Name" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <input type="text" [(ngModel)]="UserName"  [ngModelOptions]="{standalone: true}" placeholder="User Name" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <input type="date"  [(ngModel)]="Birthday"  [ngModelOptions]="{standalone: true}"  placeholder="Birthday" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp phone-o-field">
+                                                    <div class="row">
+                                                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                                                            <div class="relative">
+                                                                <select   [(ngModel)]="DefaultValue" name="phonecode"  [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                                                  <option value="" *ngFor="let item of countries" value="{{item.callingCodes[0]}}">
+                                                                    + {{item.callingCodes[0]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{item.name}})
+                                                                  </option>
+                                                                </select>
+                                                                <!-- <input type="text" name="" placeholder="+1 246" class="form-control input-tp-1"> -->
+                                                                <img [src]="getCountry()" class="flag-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                                                            <input type="text" [(ngModel)]="Phone"  [ngModelOptions]="{standalone: true}" placeholder="Phone Number" class="form-control input-tp-1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <input type="text"  [(ngModel)]="Address1"  [ngModelOptions]="{standalone: true}" placeholder="Address 1" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <input type="text"  [(ngModel)]="Address2"  [ngModelOptions]="{standalone: true}" placeholder="Address 2" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <input type="text" [(ngModel)]="Region"  [ngModelOptions]="{standalone: true}" placeholder="State/Parish/Region" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
+                                                    <select [(ngModel)]="Country"  [ngModelOptions]="{standalone: true}" class="form-control  input-tp-1">
+                                                      <option value="" >Select Country</option>
+                                                      <option value="{{item.name}}"  *ngFor="let item of countries">{{item.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp" [ngClass]="(submited && form.controls['email'].invalid) ? 'mb-0':''">
+                                                    <input name="email" placeholder="Email Address"  [(ngModel)]="Email"    required type="text" formControlName="email" class="form-control input-tp-1">
+                                                </div>
+                                                <div *ngIf="submited && form.controls['email'].invalid" class="alert-danger text-left">Email is not valid</div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp" [ngClass]="(submited && form.controls['password'].invalid) ? 'mb-0':''">
+                                                    <input name="password" placeholder="Password"   [(ngModel)]="Password" required type="password" formControlName="password" class="form-control input-tp-1">                                                   
+                                                </div>
+                                                <div *ngIf="submited && form.controls['password'].invalid" class="alert-danger text-left">Password is required</div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp"  [ngClass]="((submited && form.controls['confirm_pass'].errors && form.controls['confirm_pass'].errors.required) || (submited && form.controls['confirm_pass'].errors && !form.controls['confirm_pass'].errors.required && form.controls['confirm_pass'].errors.mustMatch)) ? 'mb-0':''">
+                                                    <input name="confirm_pass" placeholder="Confirm Password"  [(ngModel)]="ConfirmPassword"   required type="password" formControlName="confirm_pass" class="form-control input-tp-1">
+                                                </div>
+                                                <div *ngIf="submited && form.controls['confirm_pass'].errors && form.controls['confirm_pass'].errors.required" class="alert-danger text-left">Confirm Password is required</div>
+                                                <div *ngIf="submited && form.controls['confirm_pass'].errors && !form.controls['confirm_pass'].errors.required && form.controls['confirm_pass'].errors.mustMatch" class="alert-danger text-left">Confirm Password is not matched</div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp text-left">
+                                                    <div class="checkbox mt-0">
+                                                        <label class="fontsize-12 color666 fontfamily-medium">
+                                                        <input type="checkbox" name="remember" value=""  data-toggle="modal" data-target=".selectCatModal">
+                                                        <span class="cr">
+                                                          <i class="cr-icon fa fa-check"></i>
+                                                        </span>
+                                                        I agree to the Entrypass  <a [routerLink]="['/auth/terms']" class="colorblue1 text-underline"> Terms & Conditions</a>
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 m-auto">
+                                                <div class="form-group input-rw-tp mt-30 mb-0">
+                                                    <button type="submit" class="btn btn-large btn-rad-24">Sign Up</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

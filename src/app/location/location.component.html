@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content mt-40 bgwhite boxshadow-2 border-radius8 pt-30 pb-30 pl-30 pr-30 mb-30">
+            <div class="container">
+                <div class="text-center">
+                    <h4 class="fontsize-26 fontfamily-bold colorblack text-uppercase mt-25 mb-10">Location</h4>
+                    <p class="fontsize-14 fontfamily-medium color4848 mb-50">Enter Your business location here</p>
+                </div>
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 m-auto">
+                        <div class="text-right mb-30">
+                            <button class="btn widthfit addlocationbtn" (click)="createlocation()" style="padding: 6px 10px;height: 34px;">Add a Location</button>
+                        </div>
+                        <div class="add-location-form bggray1 pl-10 pr-10 pt-10" style="position: relative;"  *ngFor="let item of alldata;">
+                            <div class="faq-edit" (click)="editlocation(item.Id);"><i class="fa fa-edit" style="padding-top: 3px;"></i></div>  
+                            <div class="faq-colse" (click)="deletelocation(item.Id);">×</div> 
+                            <div class="addlocationrow relative pr-0">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <input type="text" name="" value="{{item.Address1}}" placeholder="ABC Inc." class="form-control input-tp-1">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <input type="text" name="" value="{{item.Address2}}" placeholder="Warrens, St. Micheal" class="form-control input-tp-1">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <select  value="{{item.Measurestatus}}" class="form-control input-tp-1">
+                                                <option value="">Measure Temperature</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <select value="{{item.Measuresunit}}" class="form-control input-tp-1">
+                                                <option value="">Measurement</option>
+                                                <option value="Celsius">Celsius</option>
+                                                <option value="Fahrenheit">Fahrenheit</option>
+                                                <option value="Kelvin">Kelvin</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="addlocationrow relative pr-0" *ngFor="let ele of item.childdata;">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <select  value="{{ele.Status}}" class="form-control input-tp-1">
+                                                <option value="Primary">Primary</option>
+                                                <option value="Secondary">Secondary</option>
+                                            </select>                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <input type="text" value="{{ele.Name}}" placeholder="David Fadnis" class="form-control input-tp-1">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group input-rw-tp">
+                                            <input type="text" value="{{ele.Email}}"  placeholder="Email ID" class="form-control input-tp-1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

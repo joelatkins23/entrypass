@@ -1,0 +1,24 @@
+.line-container {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+.gauge-container {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+thead {
+    display: none;
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid #E0E0E0 !important;
+}
+
+th,
+td {
+    white-space: unset;
+}

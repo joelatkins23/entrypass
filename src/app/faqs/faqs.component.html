@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content mt-40 bgwhite boxshadow-2 border-radius8">
+            <div class="">
+                <div class=" pt-10 pb-15 pl-20 pr-20">
+                    <div class="ttle-h fontsize-14 fontfamily-medium color333">Frequently Asked Questions (FAQ)</div>
+                </div>
+                <div class="row pl-35 pr-35">
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                        <p class="fontsize-12 fontfamily-medium color999">Show for (Individual, Business, Health Organization, All)</p>
+                        <div class="form-group input-rw-tp">                            
+                            <select name="" id="" class="form-control" (change)="type_change($event.target.value)">
+                                <option value="all" >All</option>
+                                <option value="health">Health Organization</option>
+                                <option value="business">Business/Institution</option>
+                                <option value="user">User</option>
+                            </select>                            
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ml-auto text-right">
+                        <button class="btn widthfit btn-small" (click)="createfaq()"><i class="fa fa-plus mr-10"></i>Add More </button>
+                    </div>
+                </div>
+                <div class="pl-35 pr-35 pb-30">
+                    <div class="que-and-row relative around-20 bggray1" *ngFor="let item of faqsdata">
+                        <div class="faq-status"  *ngIf="item.Status==1"><i class="fa fa-check" style="padding-top: 3px;"></i></div>  
+                        <div class="faq-edit" (click)="editfaq(item.Id)"><i class="fa fa-edit" style="padding-top: 3px;"></i></div>  
+                        <div class="faq-colse" (click)="faq_remove(item.Id)">×</div>                     
+                        <div>
+                            <label class="q-label fontfamily-medium fontsize-14 color333">{{item.Question}}</label>
+                            <div class="ans-block fontsize-12 fontfamily-medium colorblack">
+                                {{item.Answer}}
+                            </div>
+                        </div>
+                    </div>                                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

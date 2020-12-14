@@ -1,0 +1,122 @@
+<router-outlet>
+    <header class="relative header header-before-login">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" [routerLink]="['/auth/home']">
+                    <img src="assets/images/auth/logo.svg" style="width:150px;height:50px" alt="logo.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse header-top-memu collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto hdr-right-menu ">
+                        <li [routerLinkActive]="['active']" class="nav-item">
+                            <a class="nav-link tpmenu" [routerLink]="['/auth/home']">Home</a>
+                        </li>
+                        <li [routerLinkActive]="['active']" class="nav-item">
+                            <a class="nav-link tpmenu" [routerLink]="['/auth/subscription']">Subscription</a>
+                        </li>
+                        <li [routerLinkActive]="['active']" class="nav-item">
+                            <a class="nav-link tpmenu" [routerLink]="['/auth/faq']">FAQ</a>
+                        </li>
+                        <li [routerLinkActive]="['active']" class="nav-item">
+                            <a class="nav-link tpmenu" [routerLink]="['/auth/contact']">Contact us</a>
+                        </li>
+                        <li class="nav-item ml-20" *ngIf="!login">
+                            <a class="nav-link hdr-sign-btn login-btn" [routerLink]="['/auth/login']">Login</a>
+                        </li>
+                        <li class="nav-item ml-20" *ngIf="!login">
+                            <a class="nav-link hdr-sign-btn reg-btn" [routerLink]="['/auth/registration']">Register</a>
+                        </li>
+                        <li class="nav-item ml-20 navbar-wrapper" *ngIf="login">
+                            <div class="navbar-container">
+                                <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
+                                    <li class="user-profile header-notification">
+                                        <a [routerLink]="['/dashboard']" *ngIf="type=='admin'">
+                                            <img src="assets/images/p.png" class="mr-2" alt="User-Profile-Image ">
+                                            <span>{{name}}</span>
+                                            <i class="ti-angle-down"></i>
+                                        </a>
+                                        <a [routerLink]="['/location']" *ngIf="type=='business'">
+                                            <img src="assets/images/p.png" class="mr-2" alt="User-Profile-Image">
+                                            <span>{{name}}</span>
+                                            <i class="ti-angle-down"></i>
+                                        </a>
+                                        <a [routerLink]="['/health_transaction']" *ngIf="type=='health'">
+                                            <img src="assets/images/p.png" class="mr-2" alt="User-Profile-Image">
+                                            <span>{{name}}</span>
+                                            <i class="ti-angle-down"></i>
+                                        </a>
+                                        <ul class="show-notification profile-notification">
+                                            <li>
+                                                <a [routerLink]="['/dashboard']" *ngIf="type=='admin'">
+                                                    <i class="ti-home"></i> Dashboard
+                                                </a>
+                                                <a [routerLink]="['/location']" *ngIf="type=='business' && business_active">
+                                                    <i class="ti-home"></i> Dashboard
+                                                </a>
+                                                <a [routerLink]="['/health_transaction']" *ngIf="type=='health'">
+                                                    <i class="ti-home"></i> Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a (click)="logout()">
+                                                    <i class="ti-power-off"></i> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+    <ng2-toasty></ng2-toasty>
+    
+</router-outlet>
+<footer>
+    <div class="footer-row1 pt-60 pb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 col-12 ftr-first-col">
+                    <img src="assets/images/logo.svg" class="footerlogo">
+                    <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi varius, elit nec auctor dapibus, felis lacus congue lorem, non dictum mi nisl sed eros.</p>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <h5 class="footer-menu-heading text-uppercase mb-15 pb-10 relative fontsize-16 fontfamily-bold colorblack">Popular Links</h5>
+                    <ul class="pl-0 mb-0">
+                        <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/home']" class="fontsize-16 fontfamily-medium color333">Home</a></li>
+                        <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/subscription']" class="fontsize-16 fontfamily-medium color333">Subscription</a></li>
+                        <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/faq']" class="fontsize-16 fontfamily-medium color333">FAQ</a></li>
+                        <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/contact']" class="fontsize-16 fontfamily-medium color333">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <h5 class="footer-menu-heading text-uppercase mb-15 pb-10 relative fontsize-16 fontfamily-bold colorblack">Other Links</h5>
+                    <ul class="pl-0 mb-0">
+                        <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/terms']" class="fontsize-16 fontfamily-medium color333">Terms Of Use</a></li>
+                        <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/privacy']" class="fontsize-16 fontfamily-medium color333">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <h5 class="footer-menu-heading text-uppercase mb-15 pb-10 relative fontsize-16 fontfamily-bold colorblack">Subscribe Our Newsletter</h5>
+                    <div class="footer-email">
+                        <input type="text" name="" placeholder="Enter your email" class="form-control">
+                        <div class="mt-15">
+                            <button class="btn bluebtn">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-row2 text-center fontsize-14 colorblack fontfamily-medium pt-15 pb-15 bggray" style="background: #007FFF;
+      color: #fff;">
+        © 2020 www.entrypass.com | All Rights Reserved
+    </div>
+</footer>

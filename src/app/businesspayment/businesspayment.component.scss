@@ -1,0 +1,25 @@
+.line-container {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+.gauge-container {
+    height: 300px;
+    width: 100%;
+    display: block;
+}
+
+.dataTables_filter {
+    margin-bottom: 15px;
+    float: none!important;
+    text-align: center!important;
+    label {
+        color: #007FFF;
+        font-size: 18px;
+        input {
+            border-radius: 20px !important;
+            border: 1px solid #007FFF !important;
+        }
+    }
+}

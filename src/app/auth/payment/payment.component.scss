@@ -1,0 +1,24 @@
+.web-sign-section {
+    background-position: center;
+    background-image: url('../../../assets/images/auth/bgimg3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-height: 100%;
+    min-height: 100vh;
+}
+
+.payment_amount {
+    background-color: #f8f8f8 !important;
+    border-color: #f8f8f8 !important;
+    padding: 0.2rem 0.5rem;
+    span {
+        color: #000000;
+    }
+}
+
+.payment_amount span {
+    color: #000000;
+}
+.error_text{
+    font-size: 12px;
+}

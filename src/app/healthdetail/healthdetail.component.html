@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content mt-40 bgwhite boxshadow-2 border-radius8">
+            <div class="">
+                <div class="d-flex pt-0 pb-15 pl-20 pr-20">
+                    <div class="ttle-h fontsize-14 fontfamily-medium color333">Audit Details</div>
+                    <div class="ml-auto">
+                        <span class="ml-20"><button type="button" (click)="back()" class="btn btn-rad-24 widthfit btn-small">Back</button></span>
+                    </div>
+                </div>
+
+                <div class="p-3">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-responsive" datatable [dtOptions]="dtOptions" *ngIf="healths.length==0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">S.No.</th>
+                                    <th>Health Organization</th>
+                                    <th class="text-center">Contact Person</th>
+                                    <th class="text-center">Mobile No.</th>
+                                    <th class="text-center">Email ID</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-left">Location</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>                       
+                        </table>
+                        <table class="table table-hover table-responsive" datatable [dtOptions]="dtOptions" *ngIf="healths.length>0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">S.No.</th>
+                                    <th>Health Organization</th>
+                                    <th class="text-center">Contact Person</th>
+                                    <th class="text-center">Mobile No.</th>
+                                    <th class="text-center">Email ID</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-left">Location</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of healths; let i = index;">                                
+                                    <td class="text-center">{{i + 1}}</td>
+                                    <td>{{item.HealthName}}</td>
+                                    <td class="text-left">{{item.Contactperson}}</td>
+                                    <td class="text-center">+{{item.DefaultValue}} {{item.PhoneExt}}-{{item.Phone}}</td>
+                                    <td class="text-center">{{item.Email}}</td>
+                                    <td class="text-center">{{item.UpdateAt | date: date_format}}</td>
+                                    <td class="text-center">{{item.Address1}}</td>
+                                    <td class="text-center">{{(item.Status==1)? "Yes" :"No"}}</td>
+                                </tr>                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content mt-40 bgwhite boxshadow-2 border-radius8">
+            <div class="">
+                <div class="d-flex pt-0 pb-15 pl-20 pr-20">
+                    <div class="ttle-h fontsize-14 fontfamily-medium color333">Terms Of Use</div>                    
+                </div>
+
+                <div class="p-3">
+                   
+                    <ckeditor [(ngModel)]="TermsOfUse" readOnly="true" [data]="TermsOfUse" [ngModelOptions]="{standalone: true}" ></ckeditor>
+                </div>
+            </div>
+            <div class="">
+                <div class="d-flex pt-0 pb-15 pl-20 pr-20">
+                    <div class="ttle-h fontsize-14 fontfamily-medium color333">Privacy</div>                    
+                </div>
+
+                <div class="p-3">
+                    <ckeditor [(ngModel)]="Privacy" readOnly="true" [data]="Privacy" [ngModelOptions]="{standalone: true}" ></ckeditor>                   
+                </div>
+            </div>
+            <div class="mt-30 mb-20">
+                <div class="text-right pb-20">
+                    <span class="mr-15"><button class="btn width150 btn-rad-24" (click)="create()">Save</button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
