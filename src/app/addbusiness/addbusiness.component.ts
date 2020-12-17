@@ -135,7 +135,7 @@ export class AddbusinessComponent implements OnInit {
           });  
             
         }else{
-            {
+           
               var formdataa={  
                 Id:this.id,  
                 Name : this.BusinessName,
@@ -163,9 +163,7 @@ export class AddbusinessComponent implements OnInit {
                       
             }, err => {
               this.spinner.hide();
-            });  
-              
-          }
+            });
         }
     }
  

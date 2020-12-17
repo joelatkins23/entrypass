@@ -28,6 +28,7 @@ export class BasicRegComponent implements OnInit {
   Password = "";
   ConfirmPassword="";
   submited = false;
+  TermsOfUse:"";
   constructor(
     private api: ApisService,
     private toastyService: ToastyService,
@@ -41,6 +42,7 @@ export class BasicRegComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.getConfig();
     document.querySelector('body').setAttribute('themebg-pattern', 'theme1');
     this.client.get('https://restcountries.eu/rest/v2/all').subscribe(data=>{         
       for(let item in data)  {
@@ -88,6 +90,16 @@ export class BasicRegComponent implements OnInit {
               return this.countries[item].flag;
           }
       }
+  }
+  getConfig(){
+    this.spinner.show();
+      this.api.getConfig().subscribe(res => {
+        this.spinner.hide();
+        var TermsOfUseData =res['result'].data.filter((element) => element.Item == 'Terms');
+        this.TermsOfUse=(TermsOfUseData) ? TermsOfUseData[0].Content :'';
+    }, err => {
+      this.spinner.hide();
+    });  
   }
   submit()
     {

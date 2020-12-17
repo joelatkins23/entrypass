@@ -14,8 +14,8 @@ export class AuthInfo {
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'https://api.entrypass.biz/api';
-// const apiUrl = 'https://localhost:44353/api';
+// const apiUrl = 'https://api.entrypass.biz/api';
+const apiUrl = 'https://localhost:44353/api';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +77,10 @@ export class ApisService {
     const url = `${apiUrl}/user/changepass`;     
     return this.http.post(url, formdata);
   } 
+  ChangePasswordBusiness(formdata){
+    const url = `${apiUrl}/user/changepassbusiness`;     
+    return this.http.post(url, formdata);
+  }
   adminsignup(formdata){
     const url = `${apiUrl}/user/adminadd`;     
     return this.http.post(url, formdata);

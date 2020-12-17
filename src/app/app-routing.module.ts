@@ -116,6 +116,11 @@ const routes: Routes = [
         canActivate: [BusinessauthGuard]
       }, 
       {
+        path: 'business_profile',
+        loadChildren: () => import('./businessprofile/businessprofile.module').then(m => m.BusinessprofileModule),
+        canActivate: [BusinessauthGuard]
+      }, 
+      {
         path: 'addlocation',
         loadChildren: () => import('./addlocation/addlocation.module').then(m => m.AddlocationModule),
         canActivate: [BusinessauthGuard]
