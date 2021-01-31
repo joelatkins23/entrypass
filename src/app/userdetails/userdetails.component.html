@@ -3,103 +3,103 @@
 </ngx-spinner>
 <div class="row">
   <div class="col-md-12">
-    <div class="right-sidebar-content bgwhite boxshadow-2 border-radius8 pt-25 pb-25 pl-40 pr-50">
-        <div class="mb-50">
-          <div class="ttle-h fontsize-14 fontfamily-medium color333">Edit User Registration</div>
-        </div>
-        <div class="row">
-          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+    <div class="right-sidebar-content bgwhite boxshadow-2 border-radius8 pt-25 pb-25 pl-40 pr-50">       
+        <div class="row my-5">
+          <div class="col-xl-10 col-lg-10 offset-md-1 col-md-10 col-sm-12 col-12">
             <form [formGroup]="form" (ngSubmit)="submit()">
-              <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="text" name="" [(ngModel)]="Name" disabled [ngModelOptions]="{standalone: true}" placeholder="Name" class="form-control input-tp-1">
-                 </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="text" name=""  [(ngModel)]="UserName" disabled  [ngModelOptions]="{standalone: true}" placeholder="User Name" class="form-control input-tp-1">
-                 </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <select [(ngModel)]="Gender"  [ngModelOptions]="{standalone: true}"  disabled  placeholder="Gender" class="form-control  input-tp-1">
-                      <option value="" >Select Gender</option>
-                      <option value="male" >Male</option>
-                      <option value="female">FeMale</option>
-                    </select>
+              <fieldset>
+                <legend >Edit User Registration</legend>  
+                <div class="row px-3">
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="text" name="" [(ngModel)]="Name" disabled [ngModelOptions]="{standalone: true}" placeholder="Name" class="form-control input-tp-1">
                   </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="date" name="" [(ngModel)]="Birthday" disabled  [ngModelOptions]="{standalone: true}" placeholder="Date of Birth" class="form-control input-tp-1">
-                 </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp phone-o-field">
-                    <div class="row">
-                      <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
-                        <div class="relative">
-                            <select   [(ngModel)]="DefaultValue" name="phonecode" disabled  [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
-                              <option value="" *ngFor="let item of countries" value="{{item.callingCodes[0]}}">
-                                + {{item.callingCodes[0]}}({{item.name}})
-                              </option>
-                            </select>
-                            <img [src]="getCountry()" class="flag-img">
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="text" name=""  [(ngModel)]="UserName" disabled  [ngModelOptions]="{standalone: true}" placeholder="User Name" class="form-control input-tp-1">
+                  </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <select [(ngModel)]="Gender"  [ngModelOptions]="{standalone: true}"  disabled  placeholder="Gender" class="form-control  input-tp-1">
+                        <option value="" >Select Gender</option>
+                        <option value="male" >Male</option>
+                        <option value="female">FeMale</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="date" name="" [(ngModel)]="Birthday" disabled  [ngModelOptions]="{standalone: true}" placeholder="Date of Birth" class="form-control input-tp-1">
+                  </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp phone-o-field">
+                      <div class="row">
+                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                          <div class="relative">
+                              <select   [(ngModel)]="DefaultValue" name="phonecode" disabled  [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                <option value="" *ngFor="let item of countries" value="{{item.callingCodes[0]}}">
+                                  + {{item.callingCodes[0]}}({{item.name}})
+                                </option>
+                              </select>
+                              <img [src]="getCountry()" class="flag-img">
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
-                        <input type="text" name=""  [(ngModel)]="Phone"  disabled [ngModelOptions]="{standalone: true}" placeholder="Phone Number" class="form-control input-tp-1">
+                        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                          <input type="text" name=""  [(ngModel)]="Phone"  disabled [ngModelOptions]="{standalone: true}" placeholder="Phone Number" class="form-control input-tp-1">
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="text" name=""  [(ngModel)]="IdNumber" disabled  [ngModelOptions]="{standalone: true}" placeholder="ID Number" class="form-control input-tp-1">
-                 </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="text" name="" [(ngModel)]="Address1" disabled  [ngModelOptions]="{standalone: true}" placeholder="Address 1" class="form-control input-tp-1">
-                 </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="text" name="" [(ngModel)]="Address2" disabled [ngModelOptions]="{standalone: true}" placeholder="Address 2" class="form-control input-tp-1">
-                 </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <input type="text" name=""  [(ngModel)]="Region" disabled  [ngModelOptions]="{standalone: true}" placeholder="State/Parish/Region" class="form-control input-tp-1">
-                 </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <select [(ngModel)]="Country" disabled  [ngModelOptions]="{standalone: true}" class="form-control  input-tp-1">
-                      <option value="" >Select Country</option>
-                      <option value="{{item.name}}"  *ngFor="let item of countries">{{item.name}}</option>
-                    </select>
-                 </div>
-                </div>
-                
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp" [ngClass]="(submited && form.controls['email'].invalid) ? 'mb-0':''">
-                    <input name="email" placeholder="Email Address"  disabled [(ngModel)]="Email"    required type="text" formControlName="email" class="form-control input-tp-1">
-                 </div>
-                 <div *ngIf="submited && form.controls['email'].invalid" class="alert-danger text-left">Email is not valid</div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div class="form-group input-rw-tp">
-                    <select [(ngModel)]="Status"  [ngModelOptions]="{standalone: true}"   placeholder="Status" class="form-control  input-tp-1">
-                      <option value="" >Select Status</option>
-                      <option value="1" >Active</option>
-                      <option value="0">Non Active</option>
-                    </select>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="text" name=""  [(ngModel)]="IdNumber" disabled  [ngModelOptions]="{standalone: true}" placeholder="ID Number" class="form-control input-tp-1">
                   </div>
-                </div>              
-             </div>
+                  </div>
+
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="text" name="" [(ngModel)]="Address1" disabled  [ngModelOptions]="{standalone: true}" placeholder="Address 1" class="form-control input-tp-1">
+                  </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="text" name="" [(ngModel)]="Address2" disabled [ngModelOptions]="{standalone: true}" placeholder="Address 2" class="form-control input-tp-1">
+                  </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <input type="text" name=""  [(ngModel)]="Region" disabled  [ngModelOptions]="{standalone: true}" placeholder="State/Parish/Region" class="form-control input-tp-1">
+                  </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <select [(ngModel)]="Country" disabled  [ngModelOptions]="{standalone: true}" class="form-control  input-tp-1">
+                        <option value="" >Select Country</option>
+                        <option value="{{item.name}}"  *ngFor="let item of countries">{{item.name}}</option>
+                      </select>
+                  </div>
+                  </div>
+                  
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp" [ngClass]="(submited && form.controls['email'].invalid) ? 'mb-0':''">
+                      <input name="email" placeholder="Email Address"  disabled [(ngModel)]="Email"    required type="text" formControlName="email" class="form-control input-tp-1">
+                  </div>
+                  <div *ngIf="submited && form.controls['email'].invalid" class="alert-danger text-left">Email is not valid</div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="form-group input-rw-tp">
+                      <select [(ngModel)]="Status"  [ngModelOptions]="{standalone: true}"   placeholder="Status" class="form-control  input-tp-1">
+                        <option value="" >Select Status</option>
+                        <option value="1" >Active</option>
+                        <option value="0">Non Active</option>
+                      </select>
+                    </div>
+                  </div>              
+              </div>
+            </fieldset>
              <div class="mt-40">
               <div class="">
                 <button type="button" class="btn btn-gray width150 btn-rad-24" (click)="back()">Cancel</button>

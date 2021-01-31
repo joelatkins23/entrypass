@@ -10,8 +10,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class EdittermComponent implements OnInit {
   businesses= [];
-  TermsOfUse: string;
-  Privacy: string;
+  TermsOfUse="";
+  Privacy="";
   dtOptions: DataTables.Settings = {};
   constructor(
     private api: ApisService,
@@ -56,17 +56,6 @@ export class EdittermComponent implements OnInit {
     }, err => {
       this.spinner.hide();
     });
-  }
-  getClass(item) {
-    if (item === 'created' || item === 'accepted' || item === 'picked') {
-      return 'btn btn-primary btn-round';
-    } else if (item === 'delivered') {
-      return 'btn btn-success btn-round';
-    } else if (item === 'rejected' || item === 'cancel') {
-      return 'btn btn-danger btn-round';
-    }
-    return 'btn btn-warning btn-round';
-  }
-
+  } 
   
 }

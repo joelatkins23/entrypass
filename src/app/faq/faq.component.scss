@@ -1,3 +1,14 @@
 .faq_content {
     border-bottom: 1px solid #007FFF;
 }
+.faqs_btn{
+    line-height: 48px;
+}
+@media only screen and (max-width: 992px) {
+    .faqs_btn {
+        line-height: 20px;
+        padding: 10px;
+        text-align: left;
+    }
+    
+}

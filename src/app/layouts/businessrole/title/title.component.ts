@@ -23,7 +23,7 @@ export class BusinessroletitleComponent implements OnInit {
             }
           });
         } while (currentRoute);
-        this.titleService.setTitle(title + ' | New');
+        this.titleService.setTitle(title + ' | Business');
       });
   }
 

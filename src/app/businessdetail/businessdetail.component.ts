@@ -14,7 +14,7 @@ import { Location, DatePipe } from '@angular/common';
 export class BusinessdetailComponent implements OnInit {
   businesses= [];
   id:any;
-  public  date_format = 'd MMM yyyy h:mm';
+  public  date_format = 'd MMM yyyy H:mm';
   dtOptions: DataTables.Settings = {};
   constructor(
     private api: ApisService,

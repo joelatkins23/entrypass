@@ -1,7 +1,7 @@
 <div class="web-sign-section">
     <div class="container">
         <div class="row">
-            <div class="col-xl-8 col-lg-9 col-md-12 col-sm-12 col-12 m-auto wow fadeInUp" data-wow-delay="0.2s" style="margin-bottom: 50px !important;">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 m-auto wow fadeInUp" data-wow-delay="0.2s" style="margin-bottom: 50px !important;">
                 <div class="bgwhite boxshadow-2 border-radius8 mt-50 pt-20 pb-20 pl-15 pr-15"> 
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto" >
@@ -12,12 +12,27 @@
                                         <p class="fontsize-14 fontfamily-medium color4848 mb-10">Enter your payment detail here</p>
                                          <div class="premium-package-block d-flex pt-20 pb-20 pl-25 pr-25 text-left border-radius8 bggray1 mb-15">
                                             <div class="premium-package-block-lft text-center">
-                                                <h6 class="fontfamily-medium fontsize-16 colorblack mb-1">{{subscriptionType}}</h6>
-                                                <h5 class="fontfamily-medium fontsize-24 colorblue1 mb-0">$ {{Amount}}</h5>
+                                                <h6 class="fontfamily-medium fontsize-16 colorblack mb-1">{{SubscriptionType}}</h6>
+                                                <h5 class="fontfamily-medium fontsize-24 colorblue1 mb-0" style="font-weight: bold;">$ {{Amount}} USD</h5>
                                             </div>
+                                            <div class="text-left">
+                                                <p class="mb-0 color4848 description" [innerHtml]="Description"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 mb-4">
+                                    <div class="col-md-12">
+                                        <h4 class="fontsize-18  mt-0 mb-10" style="color:#007FFF">Available Packages</h4>
+                                    </div>                                        
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"  (click)="select(item)"  *ngFor="let item of childdata">
+                                        <div class="configure-subscription-block relative p-3"  [ngClass]="SubscriptionId == item.Id?'active':''" style="box-shadow: 0 3px 10px 0 rgb(0 0 0 / 25%);border-radius: 5px;    background: #fff;">
                                             <div class="text-center">
-                                                <p class="mb-0 fontfamily-medium fontsize-12 color4848">{{Description}}</p>
-                                            </div>
+                                                <h5 class="fontsize-20 colortype fontfamily-medium mb-2">{{item.Name}}</h5>
+                                                <h5 class="fontsize-14 colormember fontfamily-medium mb-2" *ngIf="item.Numbermin==item.Numbermax" >{{item.Numbermin}} Account</h5>
+                                                <h5 class="fontsize-14 colormember fontfamily-medium mb-2" *ngIf="item.Numbermin != item.Numbermax" >{{item.Numbermin}} to {{item.Numbermax}} Account(s)</h5>
+                                                <p class="fontsize-18 fontfamily-bold coloramount mb-0">$ {{item.Amount.toFixed(2)}} USD</p>                                                
+                                            </div>  
                                         </div>
                                     </div>
                                 </div>
@@ -26,58 +41,104 @@
                                         <img src="assets/images/payment_img.png" alt="" class="img-fluid">
                                     </div>
                                     <div class="col-md-5">
-                                        <div class="text-center">
+                                        <div >
                                             <form [formGroup]="paymentform" (ngSubmit)="submit()">
-                                                <div class="form-group input-rw-tp">
-                                                    <input type="text" [(ngModel)]="Cardname"    name="Cardname" formControlName="Cardname"  placeholder="Card Holder Name" class="form-control input-tp-1">
-                                                    <i class="fa fa-check-circle check-g"></i>
-                                                    <div *ngIf="submited && paymentform.controls['Cardname'].invalid" class="alert-danger text-left error_text">Card Holder Name is required</div>
-                                                </div>
                                                 
                                                 <div class="form-group input-rw-tp">
-                                                    <input type="text" [(ngModel)]="CardNumber" maxlength="16" name="CardNumber" formControlName="CardNumber" placeholder="Card Number" class="form-control input-tp-1">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Email</label>
+                                                    <input type="email" [(ngModel)]="Email"  readonly [ngModelOptions]="{standalone: true}"   placeholder="Email" class="form-control input-tp-1">
                                                     <i class="fa fa-check-circle check-g"></i>
-                                                    <div *ngIf="submited && paymentform.controls['CardNumber'].invalid" class="alert-danger text-left error_text">Card Number is required</div>
+                                                </div>
+                                                <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Number of User(s)</label>
+                                                    <input type="number" [(ngModel)]="UserNumber"  (change)="Total()"  name="UserNumber"   formControlName="UserNumber"   placeholder="Number of User(s)" class="form-control input-tp-1">
+                                                    <div *ngIf="paymentform.controls['UserNumber'].invalid && paymentform.get('UserNumber').touched" class="alert-danger text-left error_text">
+                                                        <span *ngIf="Numbermin==Numbermax" > Number of User(s) is {{Numbermin}}</span>
+                                                        <span *ngIf="Numbermin!=Numbermax" >Number of User(s) is {{Numbermin}} ~ {{Numbermax}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Billing Frequency</label>
+                                                    <select class="form-control input-tp-1"  (change)="Total()" [(ngModel)]="Frequency"    name="Frequency"   formControlName="Frequency" >
+                                                        <option value="">Select Frequency</option>
+                                                        <option value="Monthly">Monthly</option>
+                                                        <option value="Annually">Annually</option>
+                                                    </select>
+                                                    <div *ngIf="paymentform.controls['Frequency'].invalid && paymentform.get('Frequency').touched" class="alert-danger text-left error_text">Frequency is required</div>
                                                 </div>
                                                 <div class="form-group input-rw-tp row">
                                                     <div class="col-md-6">
+                                                        <label class="text-left" style="font-size: 11px;" for="">Subscription Date</label>
+                                                        <input type="text" [(ngModel)]="SubscriptionDate" [ngModelOptions]="{standalone: true}" readonly   placeholder="SubscriptionDate" class="form-control input-tp-1">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="text-left" style="font-size: 11px;" for="">Next Payment Date</label>
+                                                        <input type="text" [(ngModel)]="NextPaymentDate"    [ngModelOptions]="{standalone: true}" readonly  placeholder="NextPaymentDate" class="form-control input-tp-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Total Amount</label>
+                                                    <label for="" readonly class="form-control text-left input-tp-1" style="padding-top: 14px;">$ {{Totalamount.toFixed(2)}} USD</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <img src="assets/images/master.png" alt="" class="responsive" style="width: 60px;margin-right: 10px;">
+                                                    <img src="assets/images/visa.png" alt="" class="responsive" style="width: 60px;">
+                                                </div>
+                                                <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Card Holder Name</label>
+                                                    <input type="text" [(ngModel)]="Cardname"   name="Cardname" formControlName="Cardname"  placeholder="Card Holder Name" class="form-control input-tp-1">
+                                                    <i class="fa fa-check-circle check-g"></i>
+                                                    <div *ngIf="paymentform.controls['Cardname'].invalid &&  paymentform.get('Cardname').touched" class="alert-danger text-left error_text">Card Holder Name is required</div>
+                                                </div>
+                                                
+                                                <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Card Number</label>
+                                                    <input type="text" [(ngModel)]="CardNumber" maxlength="19" (ngModelChange)="change_formatcreditNumber($event)"  name="CardNumber" formControlName="CardNumber" placeholder="Card Number" class="form-control input-tp-1">
+                                                    <i class="fa fa-check-circle check-g"></i>
+                                                    <div *ngIf="paymentform.controls['CardNumber'].invalid &&  paymentform.get('CardNumber').touched" class="alert-danger text-left error_text">Card Number is required</div>
+                                                </div>
+                                                <div class="form-group input-rw-tp row">
+                                                    <div class="col-md-6">
+                                                        <label class="text-left" style="font-size: 11px;" for="">Expiry Month</label>
                                                         <input type="text" [(ngModel)]="MM"  maxlength="2"   name="MM"  formControlName="MM" placeholder="MM" class="form-control input-tp-1">
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label class="text-left" style="font-size: 11px;" for="">Expiry Year</label>
                                                         <input type="text" [(ngModel)]="YY"  maxlength="2"  name="YY"  formControlName="YY" placeholder="YY" class="form-control input-tp-1">
                                                     </div>
-                                                    <div *ngIf="submited && paymentform.controls['MM'].invalid" class="alert-danger text-left error_text">Expiry Date is required</div>
+                                                    <div *ngIf="paymentform.controls['MM'].invalid && paymentform.controls['YY'].invalid && paymentform.get('MM').touched" class="alert-danger ml-3 text-left error_text">Expiry Date is required</div>
                                                 </div>
                                                 <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Ccv</label>
                                                     <input type="number" [(ngModel)]="Ccv"  name="Ccv" formControlName="Ccv"  placeholder="CCV" class="form-control input-tp-1">
-                                                    <i class="fa fa-check-circle check-g"></i>
-                                                    <div *ngIf="submited && paymentform.controls['Ccv'].invalid" class="alert-danger text-left error_text">CCV is required</div>
+                                                    <div *ngIf="paymentform.controls['Ccv'].invalid &&  paymentform.get('Ccv').touched" class="alert-danger text-left error_text">CCV is required</div>
                                                 </div>
                                                 <div class="form-group input-rw-tp">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Country</label>
                                                     <select [(ngModel)]="Country"  name="Country" formControlName="Country" class="form-control  input-tp-1">
                                                         <option value="" >Select Country</option>
                                                         <option value="{{item.name}}"  *ngFor="let item of countries">{{item.name}}</option>
                                                       </select>
-                                                      <div *ngIf="submited && paymentform.controls['Country'].invalid" class="alert-danger text-left error_text">Country is required</div>
+                                                      <div *ngIf="paymentform.controls['Country'].invalid &&  paymentform.get('Country').touched" class="alert-danger text-left error_text">Country is required</div>
                                                 </div>
                                                 <div class="form-group input-rw-tp">
-                                                    <input type="text" [(ngModel)]="Address1"  name="Address1" formControlName="Address1" placeholder="Address1" class="form-control input-tp-1">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Billing Address 1</label>
+                                                    <input type="text" [(ngModel)]="Address1"  name="Address1" formControlName="Address1" placeholder="Billing Address 1" class="form-control input-tp-1">
                                                     <i class="fa fa-check-circle check-g"></i>
-                                                    <div *ngIf="submited && paymentform.controls['Address1'].invalid" class="alert-danger text-left error_text">Address is required</div>
+                                                    <div *ngIf="paymentform.controls['Address1'].invalid &&  paymentform.get('Address1').touched" class="alert-danger text-left error_text">Address is required</div>
                                                 </div>
                                                 <div class="form-group input-rw-tp">
-                                                    <input type="text" [(ngModel)]="Address2"  [ngModelOptions]="{standalone: true}" placeholder="Address2" class="form-control input-tp-1">
+                                                    <label class="text-left" style="font-size: 11px;" for="">Billing Address 2</label>
+                                                    <input type="text" [(ngModel)]="Address2"  [ngModelOptions]="{standalone: true}" placeholder="Billing Address 2" class="form-control input-tp-1">
                                                     <i class="fa fa-check-circle check-g"></i>
                                                 </div>
                                                 <div class="form-group input-rw-tp mt-30 mb-0">
-                                                    <button class="btn btn-large btn-rad-24" type="submit">PAY NOW</button>
+                                                    <button class="btn btn-large btn-rad-24" type="submit" [disabled]="submited">PAY NOW</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

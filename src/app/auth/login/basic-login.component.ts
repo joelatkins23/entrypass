@@ -15,6 +15,7 @@ export class BasicLoginComponent implements OnInit {
   email: any = '';
   Password: any = '';
   submited = false;
+  show=false;
   loginform = new FormGroup({
     email:new FormControl('',[Validators.required,Validators.email]),
     password:new FormControl('',[Validators.required])
@@ -30,7 +31,9 @@ export class BasicLoginComponent implements OnInit {
   ngOnInit() {
     document.querySelector('body').setAttribute('themebg-pattern', 'theme1');
   }
- 
+  passwordhidden(){
+    this.show=!this.show;
+  }
   login() {
     this.submited = true;
       if(this.loginform.invalid)
@@ -49,18 +52,14 @@ export class BasicLoginComponent implements OnInit {
         localStorage.setItem("Users",JSON.stringify(res['result'].data)); 
         localStorage.setItem('loggedin',"true");
         this.success(res['result'].message);
-        if (res['result'].data && res['result'].data.Role === 'admin') {         
+        if ((res['result'].data && res['result'].data.Role === 'admin') || (res['result'].data && res['result'].data.Role === 'superadmin')) {         
           this.router.navigate(['']);
-        }else if(res['result'].data && res['result'].data.Role=='business') {
-            if(res['result'].data.CreatedBy=="admin"){
-              this.router.navigate(['location']); 
+        }else if(res['result'].data && res['result'].data.Role=='business') {           
+            if(res['result'].checkstaus){
+              this.router.navigate(['location']);
             }else{
-              if(res['result'].checkstaus){
-                this.router.navigate(['location']);
-              }else{
-                window.location.href = '/auth/subscription';
-              }              
-            }
+              window.location.href = '/auth/subscription';
+            } 
         }else if(res['result'].data && res['result'].data.Role=='health') {                   
           this.router.navigate(['health_transaction']);
         }        
@@ -69,7 +68,7 @@ export class BasicLoginComponent implements OnInit {
       }          
   }, err => {
     this.spinner.hide();
-    this.error("User name and password entered is incorrect!");
+    this.error("User Name and Password entered is incorrect!");
   });   
   }
 

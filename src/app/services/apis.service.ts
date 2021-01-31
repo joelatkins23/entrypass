@@ -14,8 +14,8 @@ export class AuthInfo {
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-// const apiUrl = 'https://api.entrypass.biz/api';
-const apiUrl = 'https://localhost:44353/api';
+const apiUrl = 'https://api.entrypass.org/api';
+// const apiUrl = 'https://localhost:44353/api';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +65,30 @@ export class ApisService {
       }
     });
   }
+  public checkAdminAuth(type) {
+    return new Promise((resolve, reject) => {
+        var userdata = localStorage.getItem('Users');
+         var user=JSON.parse(userdata);
+       if (user) {      
+          if(user && (user.Role=='admin' || user.Role=='superadmin')){
+            const url = `${apiUrl}/subscriptionpayment/check/`+user.Id;  
+            this.http.get(url).subscribe(async (review) => {              
+              var data={
+                user:user,
+                checkstatus:review['result']
+              }
+              resolve(data);
+            }, error => {
+              reject(error);
+            });
+          }       
+      } else {
+        localStorage.clear();
+        resolve(false);
+      }
+    });
+  }
+  
   login(formdata){
     const url = `${apiUrl}/user/adminlogin`;     
     return this.http.post(url, formdata);
@@ -81,14 +105,35 @@ export class ApisService {
     const url = `${apiUrl}/user/changepassbusiness`;     
     return this.http.post(url, formdata);
   }
+  superadminsignup(formdata){
+    const url = `${apiUrl}/user/superadminadd`;     
+    return this.http.post(url, formdata);
+  }
   adminsignup(formdata){
     const url = `${apiUrl}/user/adminadd`;     
     return this.http.post(url, formdata);
+  }
+  public adminList(){
+    const url = `${apiUrl}/user/admin/list`;     
+    return this.http.get(url);
+  }
+  public getadminUser(id){
+    const url = `${apiUrl}/user/admin/`;     
+    return this.http.get(url+id);
+  } 
+  public UpdateAdminUser(formdata){
+    const url = `${apiUrl}/admin/update`;     
+    return this.http.post(url,formdata);
   }
   checkpayment(id){
     const url = `${apiUrl}/subscriptionpayment/check/`;     
     return this.http.get(url+id);
   }
+  GetAdminHistoryList(id){
+    const url = `${apiUrl}/user/admin/history/`;     
+    return this.http.get(url+id);
+  }
+  
   Payment(formdata){
     const url = `${apiUrl}/subscriptionpayment/pay`;     
     return this.http.post(url, formdata);
@@ -96,6 +141,14 @@ export class ApisService {
   getpaymentData(){
     const url = `${apiUrl}/subscriptionpayment/list`;     
     return this.http.get(url);
+  }
+  getBusinesspaymentData(id){
+    const url = `${apiUrl}/subscriptionpayment/list/`;     
+    return this.http.get(url+id);
+  }
+  LastBusinesspaymentData(id){
+    const url = `${apiUrl}/subscriptionpayment/last/`;     
+    return this.http.get(url+id);
   }
   
   signup(formdata){
@@ -162,6 +215,11 @@ export class ApisService {
     const url = `${apiUrl}/subscriptions/`;     
     return this.http.get(url+id);
   }
+  public DeleteSubscriptionDetail(id){
+    const url = `${apiUrl}/subscriptions/detail/delete/`;     
+    return this.http.get(url+id);
+  }
+  
   /* Start User registrations */
   public getuserlist(){
     const url = `${apiUrl}/appuser/list`;     
@@ -236,6 +294,15 @@ export class ApisService {
     const url = `${apiUrl}/location/`;     
     return this.http.get(url+id);
   }
+  public GetDistinctemail(formdata){
+    const url = `${apiUrl}/location/truncate`;     
+    return this.http.post(url,formdata);
+  }
+  public GetDistinctemail1(id){
+    const url = `${apiUrl}/location/truncate/`;     
+    return this.http.get(url+id);
+  }
+  
   public AddLocation(formdata){
     const url = `${apiUrl}/location/add`;     
     return this.http.post(url,formdata);
@@ -251,6 +318,19 @@ export class ApisService {
   public DeleteLocation(id){
     const url = `${apiUrl}/location/delete/`;     
     return this.http.get(url+id);
+  }
+  
+ 
+   change_formatSIN(str){
+     return str.replace(/(\d{3})(\d)/, '$1-$2');
+   }
+
+   show_originalname(filename){
+    var filename_part=filename.split("tax-");
+    if (filename_part.length>1)
+      return filename_part[filename_part.length-1];
+    else 
+      return filename;
   }
    /* End Location */
 
@@ -271,29 +351,20 @@ export class ApisService {
     const url = `${apiUrl}/qrcode/health/`;     
     return this.http.get(url+id);
   }
+  public GetAllHealthTransaction(){
+    const url = `${apiUrl}/qrcode/allhealth`;     
+    return this.http.get(url);
+  }
   
    /* End Term and condiction */
 
-  public addsubscription(Name,Amount,Description,Status){
-    const url = `${apiUrl}/subscriptions/add`; 
-    const form = {
-        "Name": Name,
-        "Amount": Amount,
-        "Description": Description,
-        "Status": Status
-        }   
-    return this.http.post(url, form);
+  public addsubscription(formdata){
+    const url = `${apiUrl}/subscriptions/add`;     
+    return this.http.post(url, formdata);
   }
-  public updatesubscription(id: any, Name: any, Amount: any,Description: any,Status: number){
-    const url = `${apiUrl}/subscriptions/update`; 
-    const form = {
-          "Id": id,
-          "Name": Name,
-          "Amount": Amount,
-          "Description": Description,
-          "Status": Status
-        }   
-    return this.http.post(url, form);
+  public updatesubscription(formdata){
+    const url = `${apiUrl}/subscriptions/update`;   
+    return this.http.post(url, formdata);
   }
   public SubmitContact(formdata){
     const url = `${apiUrl}/contact/send`;     

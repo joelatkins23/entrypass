@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
     constructor(private authServ: ApisService, private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot): any {      
-        return this.authServ.checkAuth("admin").then(user => {
+        return this.authServ.checkAdminAuth("admin").then(user => {
             if (user['user']) {
                 return true;
             } else {

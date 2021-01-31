@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApisService } from '../services/apis.service';
-import { NavigationExtras, Router } from '@angular/router';
+import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NavigationExtras, Router } from '@angular/router';
+
 @Component({
   selector: 'app-businesspayment',
   templateUrl: './businesspayment.component.html',
@@ -11,19 +13,19 @@ import { NgxSpinnerService } from 'ngx-spinner';
   encapsulation: ViewEncapsulation.None
 })
 export class BusinesspaymentComponent implements OnInit {
-  dtOptions: DataTables.Settings = {};
-  alltransaction= [];
-  muticountries=[];
-  country=[];
+  payments:any;
+  paymentdata= [];
   public  date_format = 'd MMM yyyy';
-  public  time_format = 'h.mm a';
+  dtOptions: DataTables.Settings = {};
   constructor(
     private api: ApisService,
     private router: Router,
     private spinner: NgxSpinnerService,
-  ) {
-      this.GetBusinessTransaction();
-     }
+  ) {   
+    var user = localStorage.getItem('Users');
+    this.getpaymentData(JSON.parse(user).Id);
+  }
+
   ngOnInit() {
     this.dtOptions = {
       // pagingType: 'full_numbers',
@@ -35,34 +37,44 @@ export class BusinesspaymentComponent implements OnInit {
       
     };
   }
-  GetBusinessTransaction(){
-    var userdata = localStorage.getItem('Users');
-    var user=JSON.parse(userdata);
+  getpaymentData(id){
     this.spinner.show();
-      this.api.GetBusinessTransaction(user.Id).subscribe(res => {
+      this.api.getBusinesspaymentData(id).subscribe(res => {
         this.spinner.hide();
-        this.alltransaction=res['result'].data;  
+        this.paymentdata=res['result'].data;
+        this.dtOptions = {
+          pageLength: 10,
+          lengthChange:false,
+          processing: true,
+          searching:true,
+          info:false,
+          
+        };
     }, err => {
       this.spinner.hide();
-    });  
+    }); 
   }
   export(){
-    var exportdata=[];
-    this.alltransaction.forEach(obj => {      
-       var ele={
-         "Business Name":obj.Businessname,
-         "User Name":obj.Username,
-         "Check Status":obj.CheckStatus,
-         "Measures Unit":obj.Measuresunit,
-         "Measures Value":obj.MeasuresValue,
-         "Date":obj.MeasuresDate,
-         "Location":obj.Address1+" "+obj.Address2,               
-         "User (who scanned)":obj.Scanedname,
-       }
-       exportdata.push(ele);
+  var exportdata=[];
+  this.paymentdata.forEach(obj => { 
+      var location= obj.Address1+" "+obj.Address2+" "+obj.Country;    
+      var ele={
+        "Business Name":obj.Name,
+        "Subscription type":obj.SubscriptionType,
+        "Number of Users":obj.UserNumber,
+        "Frequency":obj.Frequency,
+        "Amount":"$"+obj.Totalamount,
+        "OrderId":obj.OrderId,
+        "Location":location.replace(",", " "),
+        "Subscription Date":obj.SubscriptionDate,
+        "Next Payment Date":obj.NextPaymentDate,
+        "Payment Status":obj.AccountStatus,       
+        "Account Status":(obj.Status==1)? "Active":"Non Active"
+      }
+      exportdata.push(ele);
     });
-    var filename="Business Transaction";
-    let csvData = this.ConvertToCSV(exportdata, ['Business Name','User Name','Check Status','Measures Unit','Measures Value','Date','Location','User (who scanned)']);
+    var filename="Subscription Payments";
+    let csvData = this.ConvertToCSV(exportdata, ['Business Name','Subscription type','Number of Users','Frequency','Amount','OrderId','Location','Subscription Date','Next Payment Date','Payment Status','Account Status']);
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement("a");
     let url = URL.createObjectURL(blob);
@@ -96,6 +108,6 @@ export class BusinesspaymentComponent implements OnInit {
         }
         str += line + '\r\n';
       }
-     return str;
+    return str;
   }
 }

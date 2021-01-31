@@ -5,7 +5,7 @@ import { BusinessmenuItems } from '../../shared/menu-items/menu-business';
 import { ApisService } from 'src/app/services/apis.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 @Component({
   selector: 'app-businessrole',
   templateUrl: './businessrole.component.html',
@@ -67,16 +67,38 @@ export class BusinessroleComponent implements OnInit {
   @ViewChild('sideMenu', /* TODO: add static flag */ { static: false }) side_menu: ElementRef;
 
   config: any;
-
+  timedOut = false;
   constructor(
     public menuItems: BusinessmenuItems,
     private api: ApisService,
     private router: Router,
+    private idle: Idle, 
     private translate: TranslateService) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributs(this.windowWidth);
+    idle.setIdle(5);
+    // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
+    idle.setTimeout(600);
+    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    idle.onIdleEnd.subscribe(() => {    
+      this.reset();
+    });
+    
+    idle.onTimeout.subscribe(() => {
+      this.timedOut = true;
+      this.logout();
+    });
+    
+    if(localStorage.getItem('Users') && localStorage.getItem('loggedin')){
+      idle.watch()
+      this.timedOut = false;
+    }else{
+      idle.stop();
+    } 
   }
 
   ngOnInit() { 
@@ -84,7 +106,10 @@ export class BusinessroleComponent implements OnInit {
     var user=JSON.parse(userdata);    
       this.name=user.Name;    
   }  
- 
+  reset() {
+    this.idle.watch();
+    this.timedOut = false;
+  }
   onClickedOutside(e: Event) {
     if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {
       this.toggleOn = true;

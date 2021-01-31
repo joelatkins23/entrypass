@@ -10,49 +10,54 @@
                 </div>
 
                 <div class="p-3">
-                    <table class="table table-hover table-responsive" datatable [dtOptions]="dtOptions" *ngIf="paymentdata.length==0">
-                        <thead>
-                            <tr>
-                                <th class="text-center">S.No.</th>
-                                <th class="text-left">Business Name</th>
-                                <th class="text-center">Subscription type</th>
-                                <th class="text-center">Amount</th>
-                                <th class="text-center">Location</th>
-                                <th class="text-left">Subscription Date</th>
-                                <th class="text-center">Next Payment Date</th>
-                                <th class="text-center">Payment Status</th>
-                                <th class="text-center">Account Status</th>
-                            </tr>
-                        </thead>                        
-                    </table>
-                    <table class="table table-hover table-responsive" datatable [dtOptions]="dtOptions" *ngIf="paymentdata.length>0">
-                        <thead>
-                            <tr>
-                                <th class="text-center">S.No.</th>
-                                <th class="text-left">Business Name</th>
-                                <th class="text-center">Subscription type</th>
-                                <th class="text-center">Amount</th>
-                                <th class="text-center">Location</th>
-                                <th class="text-left">Subscription Date</th>
-                                <th class="text-center">Next Payment Date</th>
-                                <th class="text-center">Payment Status</th>
-                                <th class="text-center">Account Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of paymentdata; let i = index;">
-                                <td class="text-center">{{i + 1}}</td>
-                                <td class="text-left">{{item.BusinessName}}</td>
-                                <td class="text-center">{{item.SubscriptionType}}</td>
-                                <td class="text-center">${{item.Amount}}</td>
-                                <td class="text-center">{{item.Location}}</td>
-                                <td class="text-center">{{item.SubscriptionDate | date: date_format}}</td>
-                                <td class="text-center">{{item.NextPaymentDate | date: date_format}}</td>
-                                <td class="text-center status-blue" [ngClass]="((item.AccountStaus=='In Good Standing')? 'status-blue' :'status-red')">{{item.AccountStaus}}</td>
-                                <td class="text-center " [ngClass]="((item.Status==1)? 'status-blue' :'status-red')">{{(item.Status==1)? "Active" :"Non Active"}}</td>
-                            </tr>                            
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover" datatable [dtOptions]="dtOptions" *ngIf="paymentdata.length==0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">S.No.</th>
+                                    <th class="text-left">Business Name</th>
+                                    <th class="text-center">Subscription type</th>
+                                    <th class="text-center">Number of Users</th>
+                                    <th class="text-center">Frequency</th>
+                                    <th class="text-center">Amount</th>
+                                    <th class="text-left">Subscription Date</th>
+                                    <th class="text-center">Next Payment Date</th>
+                                    <th class="text-center">Payment Status</th>
+                                    <th class="text-center">Account Status</th>
+                                </tr>
+                            </thead>                        
+                        </table>
+                        <table class="table table-hover" datatable [dtOptions]="dtOptions" *ngIf="paymentdata.length>0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">S.No.</th>
+                                    <th class="text-left">Business Name</th>
+                                    <th class="text-center">Subscription type</th>
+                                    <th class="text-center">Number of Users</th>
+                                    <th class="text-center">Frequency</th>
+                                    <th class="text-center">Amount</th>
+                                    <th class="text-left">Subscription Date</th>
+                                    <th class="text-center">Next Payment Date</th>
+                                    <th class="text-center">Payment Status</th>
+                                    <th class="text-center">Account Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of paymentdata; let i = index;">
+                                    <td class="text-center">{{i + 1}}</td>
+                                    <td class="text-left">{{item.Name}}</td>
+                                    <td class="text-center">{{item.SubscriptionType}}</td>
+                                    <td class="text-center">{{item.UserNumber}}</td>
+                                    <td class="text-center">{{item.Frequency}}</td>
+                                    <td class="text-center">${{item.Totalamount}}</td>
+                                    <td class="text-center">{{item.SubscriptionDate | date: date_format}}</td>
+                                    <td class="text-center">{{item.NextPaymentDate | date: date_format}}</td>
+                                    <td class="text-center status-blue" [ngClass]="((item.AccountStatus=='In Good Standing')? 'status-blue' :'status-red')">{{item.AccountStatus}}</td>
+                                    <td class="text-center " [ngClass]="((item.Status==1)? 'status-blue' :'status-red')">{{(item.Status==1)? "Active" :"Non Active"}}</td>
+                                </tr>                            
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

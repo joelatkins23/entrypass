@@ -13,11 +13,14 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class SubscriptionComponent implements OnInit {
   alldata:any[] = []; 
+  role='';
   constructor(
     private api: ApisService,
     private router: Router
   ) {
-  
+    if(localStorage.getItem('Users') && localStorage.getItem('loggedin')){
+      this.role=JSON.parse(localStorage.getItem('Users')).Role;
+    }
 
   }
 
@@ -32,11 +35,13 @@ export class SubscriptionComponent implements OnInit {
       });
   }
   payment(item){ 
+    localStorage.setItem('payplan',JSON.stringify(item));
     if(localStorage.getItem('Users') && localStorage.getItem('loggedin')){
-      localStorage.setItem('payplan',JSON.stringify(item));
-      this.router.navigate(['auth/payment']);
+        if(this.role=='business'){
+          this.router.navigate(['auth/payment']);
+        }      
     }else{
       this.router.navigate(['auth/registration']);
     }
-  }
+  }  
 }

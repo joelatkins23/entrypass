@@ -24,6 +24,8 @@ import {DatePipe} from '@angular/common';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgSelect2Module } from 'ng-select2';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
+import { MomentModule } from 'angular2-moment';
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -56,6 +58,8 @@ export function LanguageLoader(http: HttpClient) {
     HttpClientModule,
     DataTablesModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgIdleKeepaliveModule.forRoot(),
+    MomentModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -5,7 +5,7 @@ import { AddsubscriptionRoutingModule } from './addsubscription-routing.module';
 import { AddsubscriptionComponent } from './addsubscriptioncomponent';
 import { SharedModule } from '../shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [AddsubscriptionComponent],
@@ -13,7 +13,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CommonModule,
     AddsubscriptionRoutingModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CKEditorModule
   ]
 })
 export class AddsubscriptionModule { }

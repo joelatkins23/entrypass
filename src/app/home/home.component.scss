@@ -68,3 +68,11 @@ ul.carousel-indicators li {
     box-shadow: 0 3px 15px 0 rgb(0 0 0 / 16%);
     border-radius: 5px;
 }
+@media only screen and (max-width: 992px) {   
+    .home-banner-sec {
+        margin-top: 133px;
+    }
+}
+.description p{
+    margin-bottom: 0px !important;
+  }

@@ -13,8 +13,11 @@ export class AddsubscriptionComponent implements OnInit {
   Name: any = '';
   Amount: any = '';
   Description: any = '';
+  Numbermin=0;
+  Numbermax=0;
   Status: any = false;  
   id: any;
+  childdata:any;
   constructor(
     private route: ActivatedRoute,
     private api: ApisService,
@@ -23,32 +26,52 @@ export class AddsubscriptionComponent implements OnInit {
   ) { }
 
   ngOnInit() {  
+   
     this.route.queryParams.subscribe(data => {
       this.new = data.register === 'true' ? true : false;
       if (!this.new && data.id) {
-        this.spinner.show();
         this.id = data.id;
-        this.api.getsubscription(data.id).subscribe(resp => {
-          this.Name=resp['data'][0].Name;
-          this.Amount=resp['data'][0].Amount;
-          this.Description=resp['data'][0].Description;
-          if(resp['data'][0].Status==1){
-            this.Status=true;
-          }else{
-            this.Status=false;
-          }
-          this.spinner.hide();       
-        });
+        this.getsubscription(data.id);              
       }
     });
+
   }  
- 
-  
+  getsubscription(id){
+    this.spinner.show();    
+    this.api.getsubscription(id).subscribe(resp => {
+      this.spinner.hide(); 
+      if(resp['result'].status==1){
+        this.Name=resp['result'].data.Name;
+        this.Amount=resp['result'].data.Amount;
+        this.Description=resp['result'].data.Description;
+        this.Numbermin=resp['result'].data.Numbermin;
+        this.Numbermax=resp['result'].data.Numbermax;
+        if(resp['result'].data.Status==1){
+          this.Status=true;
+        }else{
+          this.Status=false;
+        }
+       
+      }   
+    }); 
+  } 
   create() {
     const status= (this.Status) ? 1: 0;
-    this.api.addsubscription(this.Name,this.Amount,this.Description, status ).subscribe(resp => {
+    const formdata = {
+        Name: this.Name,
+        Amount: this.Amount,
+        Description: this.Description,
+        Status: status,
+        Numbermin:this.Numbermin,
+        Numbermax:this.Numbermax,
 
-      this.api.alerts('Success', 'New Business Created', 'success');
+      }   
+    this.api.addsubscription(formdata).subscribe(resp => {
+      if(resp['result'].status==1){
+        this.api.alerts('Success', resp['result'].message, 'success');   
+      }else if(resp['result'].status==0){
+        this.api.alerts('Error', resp['result'].message, 'error');
+      }   
       this.navCtrl.back();
     }, err => {
         console.log(err);
@@ -57,9 +80,22 @@ export class AddsubscriptionComponent implements OnInit {
   }
   update() {
     const status= (this.Status) ? 1: 0;
-    this.api.updatesubscription( this.id, this.Name,this.Amount,this.Description, status ).subscribe(resp => {
-
-      this.api.alerts('Success', 'Business Updated', 'success');
+    const formdata = {
+      Id:this.id,
+      Name: this.Name,
+      Amount: this.Amount,
+      Description: this.Description,
+      Status: status,
+      Numbermin:this.Numbermin,
+      Numbermax:this.Numbermax,
+    }   
+    this.api.updatesubscription(formdata).subscribe(resp => {   
+      this.spinner.hide();
+        if(resp['result'].status==1){
+          this.api.alerts('Success', resp['result'].message, 'success');   
+        }else if(resp['result'].status==0){
+          this.api.alerts('Error', resp['result'].message, 'error');
+        }   
       this.navCtrl.back();
     }, err => {
         console.log(err);

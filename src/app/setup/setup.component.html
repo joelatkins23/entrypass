@@ -43,13 +43,18 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                                 <div class="form-group input-rw-tp">
+                                                    <input type="date"  [(ngModel)]="Birthday"  [ngModelOptions]="{standalone: true}" placeholder="Birthday" class="form-control input-tp-1">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group input-rw-tp">
                                                     <select [(ngModel)]="Country"  [ngModelOptions]="{standalone: true}" class="form-control  input-tp-1">
                                                       <option value="" >Select Country</option>
                                                       <option value="{{item.name}}"  *ngFor="let item of countries">{{item.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                                 <div class="form-group input-rw-tp">
                                                     <input type="text"  [(ngModel)]="Address1"  [ngModelOptions]="{standalone: true}" placeholder="Address 1" class="form-control input-tp-1">
                                                 </div>

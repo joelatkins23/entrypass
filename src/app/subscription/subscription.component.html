@@ -2,19 +2,28 @@
   <div class="container mt-50">
     <div class="text-center mb-50 wow fadeInUp" data-wow-delay="0.2s">
       <h2 class="relative title-text colorwhite fontfamily-bold fontsize-40 pb-10 mb-10">Subscription Packages</h2>
-      <p class="colorwhite mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing ras vestibulum ma us iaculis.</p>
     </div>
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 wow fadeInUp" data-wow-delay="0.4s" *ngFor="let item of alldata">
         <div class="hm-pricing-block bgwhite pt-35 pb-50 pl-20 pr-20 text-center">
           <h5 class="fontsize-20 colorblack fontfamily-medium mb-15">{{item.Name}}</h5>
-          <h2 class="fontsize-46 fontfamily-bold colorblue1 mb-45">${{item.Amount}}</h2>
-          <p class="colorblack mb-10">{{item.Description}}</p>        
+          <h2 class="fontsize-36 fontfamily-bold colorblue1 mb-15">$ {{item.Amount.toFixed(2)}} USD</h2>
+          <h5 class="fontsize-20 colorblack fontfamily-medium mb-15 text-center" *ngIf="item.Numbermin!=item.Numbermax" >{{item.Numbermin}} to {{item.Numbermax}} Account(s)</h5>
+          <h5 class="fontsize-20 colorblack fontfamily-medium mb-15 text-center" *ngIf="item.Numbermin==item.Numbermax" >{{item.Numbermin}} Account(s)</h5>
+          <p class="colorblack mb-10 text-left description" [innerHtml]="item.Description"></p>        
           <div class="text-center mt-40">
-            <button class="btn bluebtn width160" (click)="payment(item)">Start Now</button>
+            <button class="btn bluebtn width160"  (click)="payment(item)">Start Now</button>
           </div>
         </div>
       </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <p class="mb-0 colorwhite" style="font-size: 16px;">Entrypass accepts payments via credit card.</p>
+        <p class="mb-0 colorwhite" style="font-size: 16px;">Entrypass also accepts payment via cheque and wire transfer. </p>
+        <p class="mb-0 colorwhite" style="font-size: 16px;">Please note, Entrypass only accepts wire transfers for amounts greater than US$2000.</p>
+        <p class="colorwhite" style="font-size: 16px;">Organizations and institutions which desire to use cheque or wire transfer as a method of payment, should contact us here <a [routerLink]="['/auth/contact']" style="color: red;">Contact Us</a> or send an email to entrypass246@gmail.com.</p>
+      </div>
     </div>
   </div>
 </section>

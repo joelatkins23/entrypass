@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MenuItems } from './menu-items/menu-items';
+import { MenuItems } from './menu-items/menu-superitems';
+import { AdminMenuItems } from './menu-items/menu-adminitems';
 import { BusinessmenuItems } from './menu-items/menu-business';
 import { HealthmenuItems } from './menu-items/menu-health';
 import { AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective } from './accordion';
@@ -90,6 +91,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MenuItems,
     BusinessmenuItems,
     HealthmenuItems,
+    AdminMenuItems,
     TodoService,
     NotificationsService,
     {

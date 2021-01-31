@@ -32,7 +32,7 @@
                             <div class="navbar-container">
                                 <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
                                     <li class="user-profile header-notification">
-                                        <a [routerLink]="['/dashboard']" *ngIf="type=='admin'">
+                                        <a [routerLink]="['/dashboard']" *ngIf="type=='admin' || type=='superadmin'">
                                             <img src="assets/images/p.png" class="mr-2" alt="User-Profile-Image ">
                                             <span>{{name}}</span>
                                             <i class="ti-angle-down"></i>
@@ -49,14 +49,25 @@
                                         </a>
                                         <ul class="show-notification profile-notification">
                                             <li>
-                                                <a [routerLink]="['/dashboard']" *ngIf="type=='admin'">
+                                                <a [routerLink]="['/dashboard']" *ngIf="type=='admin' || type=='superadmin'">
                                                     <i class="ti-home"></i> Dashboard
                                                 </a>
                                                 <a [routerLink]="['/location']" *ngIf="type=='business' && business_active">
                                                     <i class="ti-home"></i> Dashboard
-                                                </a>
+                                                </a>                                               
                                                 <a [routerLink]="['/health_transaction']" *ngIf="type=='health'">
                                                     <i class="ti-home"></i> Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/profile']" *ngIf="type=='admin' || type=='superadmin'">
+                                                    <i class="ti-user"></i> Profile
+                                                </a>
+                                                <a [routerLink]="['/business_profile']" *ngIf="type=='business' && business_active">
+                                                    <i class="ti-user"></i> Profile
+                                                </a>                                               
+                                                <a [routerLink]="['/health_profile']" *ngIf="type=='health'">
+                                                    <i class="ti-user"></i> Profile
                                                 </a>
                                             </li>
                                             <li>
@@ -83,9 +94,8 @@
     <div class="footer-row1 pt-60 pb-40">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 col-12 ftr-first-col">
-                    <img src="assets/images/logo.svg" class="footerlogo">
-                    <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi varius, elit nec auctor dapibus, felis lacus congue lorem, non dictum mi nisl sed eros.</p>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ftr-first-col">
+                    <img src="assets/images/logo.svg" class="my-5 footerlogo" style="height: 70px;">
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                     <h5 class="footer-menu-heading text-uppercase mb-15 pb-10 relative fontsize-16 fontfamily-bold colorblack">Popular Links</h5>
@@ -96,7 +106,7 @@
                         <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/contact']" class="fontsize-16 fontfamily-medium color333">Contact us</a></li>
                     </ul>
                 </div>
-                <div class="col-xl-2 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                     <h5 class="footer-menu-heading text-uppercase mb-15 pb-10 relative fontsize-16 fontfamily-bold colorblack">Other Links</h5>
                     <ul class="pl-0 mb-0">
                         <li class="mb-10" [routerLinkActive]="['active']"><a [routerLink]="['/auth/terms']" class="fontsize-16 fontfamily-medium color333">Terms Of Use</a></li>
@@ -104,19 +114,18 @@
                     </ul>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                    <h5 class="footer-menu-heading text-uppercase mb-15 pb-10 relative fontsize-16 fontfamily-bold colorblack">Subscribe Our Newsletter</h5>
-                    <div class="footer-email">
-                        <input type="text" name="" placeholder="Enter your email" class="form-control">
-                        <div class="mt-15">
-                            <button class="btn bluebtn">Subscribe</button>
-                        </div>
-                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=www.entrypass.org"  target="blank" style="margin-right: 5px;">
+                        <img src="assets/images/googleplayer.png" class="my-2 footerlogo" style="width: 170px;">
+                    </a>
+                    <a href="https://apps.apple.com/us/app/entrypass246/id1546381231" target="blank">
+                        <img src="assets/images/appstore.png" class="my-2 footerlogo" style="width: 170px;">
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     <div class="footer-row2 text-center fontsize-14 colorblack fontfamily-medium pt-15 pb-15 bggray" style="background: #007FFF;
       color: #fff;">
-        © 2020 www.entrypass.biz | All Rights Reserved
+        © 2020 www.entrypass.org | All Rights Reserved
     </div>
 </footer>

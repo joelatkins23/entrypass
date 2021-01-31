@@ -47,9 +47,11 @@
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
-                            "node_modules/datatables.net/js/jquery.dataTables.js",
+                            "node_modules/datatables.net/js/jquery.dataTables.js",                           
                             "src/assets/js/popper.min.js",
                             "src/assets/js/bootstrap.js",
+                            "node_modules/jspdf/dist/jspdf.min.js",
+                            "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
                             "src/assets/js/wow.min.js",
                             "src/assets/js/mani_custom.js",
                             "node_modules/select2/dist/js/select2.min.js"

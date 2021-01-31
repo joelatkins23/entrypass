@@ -10,6 +10,8 @@ import {FormGroup,FormControl,FormBuilder, Validators} from '@angular/forms';
 })
 export class ResetComponent implements OnInit { 
   submited = false;
+  show=false;
+  conformshow=false;
   Password="";
   ConfirmPassword="";
   token: any;
@@ -54,6 +56,12 @@ export class ResetComponent implements OnInit {
             }
         }
     }
+    passwordhidden(){
+        this.show=!this.show;
+      }
+    conformpasswordhidden(){
+        this.conformshow=!this.conformshow;
+      }
     submit()
     {
         this.submited = true;

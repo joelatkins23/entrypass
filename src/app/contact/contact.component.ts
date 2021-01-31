@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApisService } from 'src/app/services/apis.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -21,6 +22,7 @@ export class ContactComponent implements OnInit {
   constructor(
     private api: ApisService,
     private spinner: NgxSpinnerService,
+    private router: Router
   ) {    
   }
 
@@ -31,7 +33,9 @@ export class ContactComponent implements OnInit {
   {
       this.selecttype = item;
   }
-  
+  gotopayment(){
+    this.router.navigate(['auth/payment']);
+  }
   submit() {
     this.submited = true;
       if(this.contactform.invalid)
@@ -44,13 +48,16 @@ export class ContactComponent implements OnInit {
         Phone:this.Phone,
         Message:this.Message
       }
+    
       this.api.SubmitContact(formdata).subscribe(res => {
         this.spinner.hide();
-        if(res['status']==1){   
+        if(res['result'].status==1){   
           this.api.alerts('Success', 'Email Sent Successful', 'success');  
+          this.submited = false;
           this.Email="";
           this.Phone="";
-          this.Message="";    
+          this.Message=""; 
+             
           } else{    
             this.api.alerts('Error', "Email don't Send", 'error');    
         }          

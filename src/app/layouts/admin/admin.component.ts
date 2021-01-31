@@ -1,11 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { state, style, transition, animate, trigger, AUTO_STYLE } from '@angular/animations';
 import 'rxjs/add/operator/filter';
-import { MenuItems } from '../../shared/menu-items/menu-items';
+import { MenuItems } from '../../shared/menu-items/menu-superitems';
+import { AdminMenuItems } from '../../shared/menu-items/menu-adminitems';
+
 import { ApisService } from 'src/app/services/apis.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
+// import { Keepalive } from '@ng-idle/keepalive';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -65,28 +68,63 @@ export class AdminComponent implements OnInit {
   @ViewChild('searchFriends', /* TODO: add static flag */ { static: false }) search_friends: ElementRef;
   @ViewChild('toggleButton', /* TODO: add static flag */ { static: false }) toggle_button: ElementRef;
   @ViewChild('sideMenu', /* TODO: add static flag */ { static: false }) side_menu: ElementRef;
-
+  role="";
   config: any;
-
+  timedOut = false;
+  lastPing?: Date = null;
   constructor(
     public menuItems: MenuItems,
+    public adminmenuItems: AdminMenuItems,
     private api: ApisService,
     private router: Router,
+    private idle: Idle, 
+    // private keepalive: Keepalive,
     private translate: TranslateService) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributs(this.windowWidth);
+    idle.setIdle(5);
+    // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
+    idle.setTimeout(600);
+    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    idle.onIdleEnd.subscribe(() => {       
+      this.reset();
+    });
+    
+    idle.onTimeout.subscribe(() => {
+      this.timedOut = true;
+      localStorage.clear();
+      this.router.navigate(['auth/home']);
+    });
+
+    // keepalive.interval(15);
+
+    // keepalive.onPing.subscribe(() => this.lastPing = new Date());
+    
+    if(localStorage.getItem('Users') && localStorage.getItem('loggedin')){
+      idle.watch()
+      this.timedOut = false;
+    }else{
+      idle.stop();
+    } 
   }
 
   ngOnInit() { 
     this.getUsers()
+  }
+  reset() {
+    this.idle.watch();
+    this.timedOut = false;
   }
   getUsers() {
     if(localStorage.getItem('Users') && localStorage.getItem('loggedin')){
       var userdata = localStorage.getItem('Users');
       var user=JSON.parse(userdata);
       this.name=user.Name;      
+      this.role=user.Role;
     }    
   }
   onClickedOutside(e: Event) {

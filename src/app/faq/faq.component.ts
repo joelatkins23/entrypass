@@ -4,10 +4,7 @@ import { ApisService } from '../services/apis.service';
 @Component({
   selector: 'app-home',
   templateUrl: './faq.component.html',
-  styleUrls: [
-    './faq.component.scss'
-  ],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./faq.component.scss'],
 })
 export class FaqComponent implements OnInit { 
   selected_type="all";

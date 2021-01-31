@@ -11,31 +11,34 @@
                    
                     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 m-auto">
                         <form [formGroup]="form" (ngSubmit)="submit()">
-                            <div class="add-location-form bggray1 pl-10 pr-10 pt-10">
-                                <div class="addlocationrow relative">
+                            <div class="add-location-form bggray1 pl-10 pr-10 pt-10 mb-1">
+                                <div class="relative">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group input-rw-tp">
-                                                <input type="text" name="" [(ngModel)]="Address1" [ngModelOptions]="{standalone: true}" placeholder="ABC Inc." class="form-control input-tp-1">
+                                            <div class="form-group ">
+                                                <input type="text" name="address1" formControlName="address1" [(ngModel)]="Address1"  placeholder="ABC Inc." class="form-control input-tp-1">
+                                                <div *ngIf="submited && form.controls['address1'].invalid" style="font-size: 11px;" class="alert-danger text-left">Address1 is required</div>
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group input-rw-tp">
-                                                <input type="text" name=""  [(ngModel)]="Address2" [ngModelOptions]="{standalone: true}" placeholder="Warrens, St. Micheal" class="form-control input-tp-1">
+                                            <div class="form-group ">
+                                                <input type="text" name=""  [(ngModel)]="Address2" formControlName="address2" placeholder="Warrens, St. Micheal" class="form-control input-tp-1">
+                                                <div *ngIf="submited && form.controls['address2'].invalid" style="font-size: 11px;" class="alert-danger text-left">Address2 is required</div>
                                             </div>
                                         </div> 
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group input-rw-tp">
-                                                <select name="" id=""  [(ngModel)]="Measurestatus" [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                            <div class="form-group ">
+                                                <select name="" id=""  [(ngModel)]="Measurestatus"  (change)="changeMeasurestatus($event.target.value)" formControlName="measurestatus" class="form-control input-tp-1">
                                                     <option value="">Measure Temperature</option>
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
                                                 </select>
+                                                <div *ngIf="submited && form.controls['measurestatus'].invalid" style="font-size: 11px;" class="alert-danger text-left">Measure Temperature is required</div>
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group input-rw-tp">
-                                                <select name="" id="" [(ngModel)]="Measuresunit" [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                            <div class="form-group ">
+                                                <select name="" id="" [(ngModel)]="Measuresunit" [disabled]="Measurestatus!='Yes'"  [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
                                                     <option value="">Measurement</option>
                                                     <option value="Celsius">Celsius</option>
                                                     <option value="Fahrenheit">Fahrenheit</option>
@@ -62,25 +65,23 @@
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                                             <div class="form-group input-rw-tp">
-                                                <ng-select2 
-                                                    [(ngModel)]="item.Email"
-                                                    [data]="persionemail"
-                                                    [ngModelOptions]="{standalone: true}"
-                                                    [placeholder]="'Select Email'">		
-                                                </ng-select2>
+                                                <input type="text" name="" [(ngModel)]="item.Email" [ngModelOptions]="{standalone: true}"  placeholder="Email" class="form-control input-tp-1">                                              
                                             </div>
                                         </div>
                                         
                                     </div>
+                                    <a (click)="oncheck(item, i)" class="loc-check-a"><i class="fa fa-check c_check"></i></a>
                                     <a (click)="onadd()" class="loc-plus-a"><img src="assets/images/plus.png" class="loc-icn"  *ngIf="i==0"></a>
                                     <a (click)="ondelete(item,item.Id,i)" class="loc-plus-a"><img src="assets/images/delete.png" class="loc-icn delete-icon" *ngIf="i>0"> </a>
                                 </div>                           
                             </div>
+                            <div *ngIf="error" class="alert-danger text-left error_text">You can only select {{Numberuser}} Users</div>
+
                             <div class="mt-40">
                                 <div class="">
                                     <button type="button" class="btn btn-gray width150 btn-rad-24" (click)="back()">Cancel</button>
-                                    <span class="ml-15"><button  class="btn width150 btn-rad-24" type="submit" *ngIf="new">Save</button></span>
-                                    <span class="ml-15"><button  class="btn width150 btn-rad-24" type="submit" *ngIf="!new">Update</button></span>
+                                    <span class="ml-15" *ngIf="new"><button  class="btn width150 btn-rad-24" type="submit" [disabled]="error" >Save</button></span>
+                                    <span class="ml-15" *ngIf="!new"><button  class="btn width150 btn-rad-24" type="submit" [disabled]="error" >Update</button></span>
                                 </div>
                             </div>
                         </form>

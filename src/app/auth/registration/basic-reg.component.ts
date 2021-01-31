@@ -5,7 +5,9 @@ import { Router, NavigationExtras } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslateService } from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
+import {  DatePipe } from '@angular/common';
 import {FormGroup,FormControl,Validator,FormBuilder, Validators} from '@angular/forms';
+import { CustomValidators } from 'src/app/custom-validators';
 @Component({
   selector: 'app-basic-reg',
   templateUrl: './basic-reg.component.html',
@@ -18,8 +20,9 @@ export class BasicRegComponent implements OnInit {
   DefaultValue = "";
   Name = "";
   UserName = "";
+  BusinessRegister="";
   Gender = "";
-  Birthday = "";
+  Birthday =this.datePipe.transform(new Date(),"yyyy-MM-dd");
   Phone = "";
   Address1 = "";
   Address2 = "";
@@ -29,6 +32,8 @@ export class BasicRegComponent implements OnInit {
   ConfirmPassword="";
   submited = false;
   TermsOfUse:"";
+  pass=false;
+  cpass=false;
   constructor(
     private api: ApisService,
     private toastyService: ToastyService,
@@ -36,7 +41,8 @@ export class BasicRegComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private translate: TranslateService,
     private client:HttpClient,
-    private formbuilder:FormBuilder
+    private formbuilder:FormBuilder,
+    private datePipe:DatePipe
   ) {
    
   }
@@ -55,8 +61,15 @@ export class BasicRegComponent implements OnInit {
       })
   }
   form = this.formbuilder.group({
-      email:new FormControl('',[Validators.email,Validators.required]),
-      password:new FormControl('',[Validators.required]),
+      email:new FormControl(null,[Validators.email,Validators.required]),
+      password:new FormControl(null,[Validators.required,
+        CustomValidators.patternValidator(/\d/, { hasNumber: true }),
+        CustomValidators.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+        CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
+        CustomValidators.patternValidator(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, { hasSpecialCharacters: true }),
+        Validators.minLength(6)
+    
+    ]),
       confirm_pass:new FormControl('',[Validators.required])
   },{validators:this.mustmatch('password','confirm_pass')})
 
@@ -80,7 +93,12 @@ export class BasicRegComponent implements OnInit {
           }
       }
   }
-
+  passwordhidden(){
+    this.pass=!this.pass;
+  }
+  cpasswordhidden(){
+    this.cpass=!this.cpass;
+  }
   getCountry()
   {
       for(let item in this.countries)
@@ -123,19 +141,27 @@ export class BasicRegComponent implements OnInit {
             Address2 : this.Address2,
             Region : this.Region,
             Role:"business",
-            Status:1
+            Status:1,
+            BusinessRegister:this.BusinessRegister
             
         }
+        // console.log(formdata);
         this.spinner.show();
         this.api.signup(formdata).subscribe(res => {
             this.spinner.hide();
             if(res['result'].status==1){
-                this.success(res['result'].message);
+                this.api.alerts('Success', res['result'].message, 'success');
                 localStorage.setItem("Users",JSON.stringify(res['result'].data)); 
                 localStorage.setItem('loggedin',"true");
-                this.router.navigate(['auth/subscription']);
+                // this.router.navigate(['auth/subscription']);
+                if(localStorage.getItem('payplan')){
+                    window.location.href = './auth/payment';
+                }else{
+                    window.location.href = './auth/subscription';
+                }
+                
             }else{
-                this.error(res['result'].message);
+                this.api.alerts('Error', res['result'].message, 'error');
             }
         }, err => {
             this.spinner.hide();
@@ -143,38 +169,5 @@ export class BasicRegComponent implements OnInit {
         });
        
     } 
-    error(message) {
-        const toastOptions: ToastOptions = {
-        title: this.api.translate('Error'),
-        msg: message,
-        showClose: true,
-        timeout: 2000,
-        theme: 'default',
-        onAdd: (toast: ToastData) => {
-            console.log('Toast ' + toast.id + ' has been added!');
-        },
-        onRemove: function (toast: ToastData) {
-            console.log('Toast ' + toast.id + ' has been removed!');
-        }
-        };
-        // Add see all possible types in one shot
-        this.toastyService.error(toastOptions);
-    }
-    success(message) {
-        const toastOptions: ToastOptions = {
-        title: this.api.translate('Success'),
-        msg: message,
-        showClose: true,
-        timeout: 2000,
-        theme: 'default',
-        onAdd: (toast: ToastData) => {
-            console.log('Toast ' + toast.id + ' has been added!');
-        },
-        onRemove: function (toast: ToastData) {
-            console.log('Toast ' + toast.id + ' has been removed!');
-        }
-        };
-        // Add see all possible types in one shot
-        this.toastyService.success(toastOptions);
-    } 
+    
 }

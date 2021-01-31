@@ -23,7 +23,7 @@ export class HealthroletitleComponent implements OnInit {
             }
           });
         } while (currentRoute);
-        this.titleService.setTitle(title + ' | New');
+        this.titleService.setTitle(title + ' | Health');
       });
   }
 

@@ -18,18 +18,23 @@ export class AddbusinessComponent implements OnInit {
   id: any;
   countries = [];
   BusinessName = ""
+  BusinessRegister="";
   ContactPerson = "";
   DefaultValue = "1246";
   Phone = "";
   PhoneExt = "";
   Email = "";
-  Bsdate = "";
+  Bsdate = this.datePipe.transform(new Date(),"yyyy-MM-dd");  
   Address1 = "";
   Address2 = "";
   Region = "";
   Country = "Barbados";
   Status = "";
+  UserNumber=0;
   submited = false;
+  Totalamount="";
+  CreatedBy="";
+  ExpriyDate=this.datePipe.transform(new Date(),"yyyy-MM-dd");
   public  date_format = 'yyyy-MM-DD';
   constructor(
     private api: ApisService,
@@ -79,6 +84,7 @@ export class AddbusinessComponent implements OnInit {
         if(res['result'].status==1){
           this.BusinessName = res['result'].data.Name;
           this.ContactPerson = res['result'].data.UserName;
+          this.BusinessRegister = res['result'].data.BusinessRegister;
           this.DefaultValue = res['result'].data.DefaultValue;
           this.Phone = res['result'].data.Phone;
           this.PhoneExt = res['result'].data.PhoneExt;
@@ -89,6 +95,10 @@ export class AddbusinessComponent implements OnInit {
           this.Region = res['result'].data.Region;
           this.Country = res['result'].data.Country;
           this.Status=res['result'].data.Status;
+          this.UserNumber=res['result'].data.UserNumber;
+          this.Totalamount=res['result'].data.Totalamount;
+          this.ExpriyDate=this.datePipe.transform(new Date(res['result'].data.ExpriyDate),"yyyy-MM-dd");
+          this.CreatedBy=res['result'].data.CreatedBy;
         }
               
     }, err => {
@@ -117,8 +127,12 @@ export class AddbusinessComponent implements OnInit {
               Region : this.Region,
               Country : this.Country,
               Status : this.Status,  
+              UserNumber:this.UserNumber,
+              Totalamount:this.Totalamount,
               Role:'business',
-              CreatedBy:'admin'         
+              CreatedBy:'admin',
+              ExpriyDate:this.ExpriyDate ,
+              BusinessRegister:this.BusinessRegister
           }
           this.spinner.show();
             this.api.AddBusiness(formdata).subscribe(res => {
@@ -149,9 +163,12 @@ export class AddbusinessComponent implements OnInit {
                 Address2 : this.Address2,  
                 Region : this.Region,
                 Country : this.Country,
-                Status : this.Status,  
+                Status : this.Status, 
+                UserNumber:this.UserNumber, 
+                Totalamount:this.Totalamount,
                 Role:'business',
-                CreatedBy:'admin'            
+                ExpriyDate:this.ExpriyDate,
+                BusinessRegister:this.BusinessRegister
             }
             this.spinner.show();
               this.api.UpdateBusiness(formdataa).subscribe(res => {

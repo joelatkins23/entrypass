@@ -4,7 +4,8 @@
             <div class="container">
                 <div class="text-center">
                     <h4 class="fontsize-26 fontfamily-bold colorblack text-uppercase mt-25 mb-10">Location</h4>
-                    <p class="fontsize-14 fontfamily-medium color4848 mb-50">Enter Your business location here</p>
+                    <p class="fontsize-14 fontfamily-medium color4848 mb-10">Enter Your business location here</p>
+                    <p class="fontsize-16 fontfamily-medium colorblack mb-50">You are registered to add {{UserNumber}}  accounts across all of your locations.<br>  If you need to change the number of accounts please contact us at <a [routerLink]="['/auth/contact']">entrypass246@gmail.com</a>.</p>                    
                 </div>
                 <div class="row">
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 m-auto">
@@ -28,21 +29,13 @@
                                     </div>
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                         <div class="form-group input-rw-tp">
-                                            <select  value="{{item.Measurestatus}}" class="form-control input-tp-1">
-                                                <option value="">Measure Temperature</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
-                                            </select>
+                                            <input type="text" name="" value="{{item.Measurestatus}}" placeholder="Measure Temperature" class="form-control input-tp-1">
+                                            
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                         <div class="form-group input-rw-tp">
-                                            <select value="{{item.Measuresunit}}" class="form-control input-tp-1">
-                                                <option value="">Measurement</option>
-                                                <option value="Celsius">Celsius</option>
-                                                <option value="Fahrenheit">Fahrenheit</option>
-                                                <option value="Kelvin">Kelvin</option>
-                                            </select>
+                                            <input type="text" name="" value="{{item.Measuresunit}}" placeholder="Measurement Unit" class="form-control input-tp-1">                                            
                                         </div>
                                     </div>
                                 </div>
@@ -51,10 +44,7 @@
                                 <div class="row">
                                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                                         <div class="form-group input-rw-tp">
-                                            <select  value="{{ele.Status}}" class="form-control input-tp-1">
-                                                <option value="Primary">Primary</option>
-                                                <option value="Secondary">Secondary</option>
-                                            </select>                                            
+                                            <input type="text" name="" value="{{ele.Status}}" placeholder="Measurement Unit" class="form-control input-tp-1">                                                                                       
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">

@@ -10,6 +10,7 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class LocationComponent implements OnInit {
   name="";
+  UserNumber:any;
   alldata:any;
   constructor(
     private api: ApisService,
@@ -26,6 +27,7 @@ export class LocationComponent implements OnInit {
     this.spinner.show();
     var user = localStorage.getItem('Users');
     var userData=JSON.parse(user);
+    this.UserNumber=userData.UserNumber;
       this.api.GetLocationList(userData.Id).subscribe(res => {
         this.spinner.hide();
         this.alldata=res['result'].data;

@@ -54,21 +54,25 @@ export class PaymentComponent implements OnInit {
   }
   export(){
   var exportdata=[];
-  this.paymentdata.forEach(obj => {      
+  this.paymentdata.forEach(obj => { 
+      var location= obj.Address1+" "+obj.Address2+" "+obj.Country;    
       var ele={
-        "Business Name":obj.BusinessName,
+        "Business Name":obj.Name,
         "Subscription type":obj.SubscriptionType,
-        "Amount":"$"+obj.Amount,
-        "Location":obj.Location,
+        "Number of Users":obj.UserNumber,
+        "Frequency":obj.Frequency,
+        "Amount":"$"+obj.Totalamount,
+        "OrderId":obj.OrderId,
+        "Location":location.replace(",", " "),
         "Subscription Date":obj.SubscriptionDate,
         "Next Payment Date":obj.NextPaymentDate,
-        "Payment Status":obj.AccountStaus,       
+        "Payment Status":obj.AccountStatus,       
         "Account Status":(obj.Status==1)? "Active":"Non Active"
       }
       exportdata.push(ele);
     });
     var filename="Subscription Payments";
-    let csvData = this.ConvertToCSV(exportdata, ['Business Name','Subscription type','Amount','Location','Subscription Date','Next Payment Date','Payment Status','Account Status']);
+    let csvData = this.ConvertToCSV(exportdata, ['Business Name','Subscription type','Number of Users','Frequency','Amount','OrderId','Location','Subscription Date','Next Payment Date','Payment Status','Account Status']);
     let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
     let dwldLink = document.createElement("a");
     let url = URL.createObjectURL(blob);

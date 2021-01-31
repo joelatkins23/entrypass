@@ -45,7 +45,10 @@ export class SubscriptionsComponent implements OnInit {
   subscription_remove(id){
     console.log(id);
     this.api.subscription_remove(id).subscribe(resp => {
-      this.alldata=resp['data'];
+      this.getsubscriptionslist();
+      if(resp['result'].status==1){
+        this.api.alerts('Success', resp['result'].message, 'success');    
+      }
   }, err => {
       console.log(err);
   });

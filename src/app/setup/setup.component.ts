@@ -17,6 +17,7 @@ export class SetupComponent implements OnInit {
   Country = ""
   DefaultValue = "";
   Name = "";
+  Birthday="";
   UserName = "";
   Address1 = "";
   Address2 = "";
@@ -98,6 +99,7 @@ export class SetupComponent implements OnInit {
         var formdata={                    
             Name : this.Name,
             UserName : this.UserName,
+            Birthday:this.Birthday,
             Email : this.Email,
             Password : this.Password,
             DefaultValue :this.DefaultValue,
@@ -106,11 +108,11 @@ export class SetupComponent implements OnInit {
             Address1 : this.Address1,
             Address2 : this.Address2,
             Region : this.Region,
-            Role:"admin"
+            Role:"superadmin"
             
         }
         this.spinner.show();
-        this.api.adminsignup(formdata).subscribe(res => {
+        this.api.superadminsignup(formdata).subscribe(res => {
             this.spinner.hide();  
             if(res['result'].status==1){
                 this.success(res['result'].message);

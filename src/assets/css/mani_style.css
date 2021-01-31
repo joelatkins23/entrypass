@@ -851,11 +851,6 @@ li.dropdown.sd-dropdown.sidemenu-li a.dropdown-toggle:before {
     width: 8px;
     height: 8px;
 }
-
-.table-responsive {
-    display: inline-table;
-}
-
 .rtabs.fontsize-16.fontfamily-medium.colorblack.active {
     color: #007FFF;
     border: 1px solid#007FFF;

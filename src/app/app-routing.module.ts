@@ -7,7 +7,6 @@ import { AuthComponent } from './layouts/auth/auth.component';
 import { AuthGuard } from './guard/auth.guard';
 import { BusinessauthGuard } from './businessguard/auth.guard';
 import { HealthauthGuard } from './healthguard/auth.guard';
-
 import { SetupAuthGuard } from './setupGuard/auth.guard';
 const routes: Routes = [
   {
@@ -22,6 +21,11 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./adminprofile/adminprofile.module').then(m => m.AdminprofileModule),
         canActivate: [AuthGuard]
       },
       {
@@ -98,7 +102,38 @@ const routes: Routes = [
         path: 'terms',
         loadChildren: () => import('./editterm/editterm.module').then(m => m.EdittermModule),
         canActivate: [AuthGuard]
-      },    
+      }, 
+      {
+        path: 'setting',
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
+        canActivate: [AuthGuard]
+      },  
+      {
+        path: 'transaction',
+        loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+        canActivate: [AuthGuard]
+      
+      },
+      {
+        path: 'adminuser',
+        loadChildren: () => import('./adminuser/adminuser.module').then(m => m.AdminuserModule),
+        canActivate: [AuthGuard]
+      } ,
+      {
+        path: 'addadminuser',
+        loadChildren: () => import('./addadminuser/addadminuser.module').then(m => m.AddadminuserModule),
+        canActivate: [AuthGuard]
+      } ,
+      {
+        path: 'editadminuser',
+        loadChildren: () => import('./editadminuser/editadminuser.module').then(m => m.EditadminuserModule),
+        canActivate: [AuthGuard]
+      } ,
+      {
+        path: 'admindetail',
+        loadChildren: () => import('./admindetail/admindetail.module').then(m => m.AdmindetailModule),
+        canActivate: [AuthGuard]
+      } 
     ]
   },
   {
@@ -126,8 +161,13 @@ const routes: Routes = [
         canActivate: [BusinessauthGuard]
       }, 
       {
-        path: 'business_transaction',
+        path: 'business_payment',
         loadChildren: () => import('./businesspayment/businesspayment.module').then(m => m.BusinesspaymentModule),
+        canActivate: [BusinessauthGuard]
+      }, 
+      {
+        path: 'business_transaction',
+        loadChildren: () => import('./businesstransaction/businesstransaction.module').then(m => m.BusinesstransactionModule),
         canActivate: [BusinessauthGuard]
       }    
     ]
@@ -143,7 +183,12 @@ const routes: Routes = [
       },    
       {
         path: 'health_transaction',
-        loadChildren: () => import('./healthpayment/healthpayment.module').then(m => m.HealthpaymentModule),
+        loadChildren: () => import('./healthtransaction/healthtransaction.module').then(m => m.HealthtransactionModule),
+        canActivate: [HealthauthGuard]
+      },    
+      {
+        path: 'health_profile',
+        loadChildren: () => import('./healthprofile/healthprofile.module').then(m => m.HealthprofileModule),
         canActivate: [HealthauthGuard]
       }    
     ]

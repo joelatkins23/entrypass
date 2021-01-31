@@ -11,9 +11,9 @@
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
                 <div class="bnr-sl-left-cnt ">
                   <h1 class="fontsize-60 fontfamily-heavy colorblue mb-1">Protecting lives and livelihoods</h1>
-                  <p>Use our digital visitor management service to help maintain public health and safety for all.  Let’s do our part to protect lives and livelihoods against the negative impacts of infectious viruses like COVID-19.  Avoid prolonged shutdowns with Entrypass</p>
-                  <p>Visit the Google Play Store and Apple Store to download our mobile app, today</p>
-                  <button class="btn widthfit bluebtn">Get Started</button>
+                  <p>Use our digital visitor management service to help maintain public health and safety for all. Let’s do our part to protect lives and livelihoods against the negative impacts of infectious viruses. Avoid prolonged shutdowns with Entrypass.</p>
+                  <p>Visit the Google Play Store and Apple Store to download our mobile app, today.</p>
+                  <button class="btn widthfit bluebtn" (click)="gotosubscription()">Get Started</button>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -30,9 +30,9 @@
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
                 <div class="bnr-sl-left-cnt ">
                   <h1 class="fontsize-60 fontfamily-heavy colorblue mb-1">Protecting lives and livelihoods</h1>
-                  <p>Use our digital visitor management service to help maintain public health and safety for all.  Let’s do our part to protect lives and livelihoods against the negative impacts of infectious viruses like COVID-19.  Avoid prolonged shutdowns with Entrypass</p>
-                  <p>Visit the Google Play Store and Apple Store to download our mobile app, today</p>
-                  <button class="btn widthfit bluebtn">Get Started</button>
+                  <p>Use our digital visitor management service to help maintain public health and safety for all. Let’s do our part to protect lives and livelihoods against the negative impacts of infectious viruses. Avoid prolonged shutdowns with Entrypass.</p>
+                  <p>Visit the Google Play Store and Apple Store to download our mobile app, today.</p>
+                  <button class="btn widthfit bluebtn" (click)="gotosubscription()">Get Started</button>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -49,9 +49,9 @@
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
                 <div class="bnr-sl-left-cnt ">
                   <h1 class="fontsize-60 fontfamily-heavy colorblue mb-1">Protecting lives and livelihoods</h1>
-                  <p>Use our digital visitor management service to help maintain public health and safety for all.  Let’s do our part to protect lives and livelihoods against the negative impacts of infectious viruses like COVID-19.  Avoid prolonged shutdowns with Entrypass</p>
-                  <p>Visit the Google Play Store and Apple Store to download our mobile app, today</p>
-                  <button class="btn widthfit bluebtn">Get Started</button>
+                  <p>Use our digital visitor management service to help maintain public health and safety for all. Let’s do our part to protect lives and livelihoods against the negative impacts of infectious viruses. Avoid prolonged shutdowns with Entrypass.</p>
+                  <p>Visit the Google Play Store and Apple Store to download our mobile app, today.</p>
+                  <button class="btn widthfit bluebtn" (click)="gotosubscription()">Get Started</button>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -75,9 +75,12 @@
     <div class="row">
       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 left-col-sec2">
         <h2 class="fontfamily-bold fontsize-40 colorblue mb-20 wow fadeInUp" data-wow-delay="0.2s">Entrypass: A digital public health and safety solution for all.</h2>
-        <p class="fontsize-14 mb-30 wow fadeInUp" data-wow-delay="0.3s">Entrypass brings individuals inner peace when going out shopping for essentials.  Sharing your visitor details helps us to protect you and the more vulnerable persons in our society. <br>Entrypass allows visitors to check-in to business places smoothly.  It greatly reduces the work needed to collect and safely store visitor entry-exit data.  Entrypass allows businesses to focus on value-added activities while adhering to national COVID-19 protocols. <br>Entrypass also supports approved health institutions (e.g. Ministry of Health) by providing a full-scale, user-friendly, digital tool to optimize contact tracing efforts.  <br>Entrypass helps in the fight against infectious viruses such as COVID-19.</p>
+        <p class="fontsize-14 wow fadeInUp" data-wow-delay="0.3s">Entrypass brings individuals inner peace when going out shopping for essentials. Sharing your visitor details helps us to protect you and the more vulnerable persons in our society.</p>
+        <p class="fontsize-14 wow fadeInUp" data-wow-delay="0.3s">Entrypass allows visitors to check-in to business places smoothly. It greatly reduces the work needed to collect and safely store visitor entry-exit data. Entrypass allows businesses to focus on value-added activities while adhering to national protocols.</p>
+        <p class="fontsize-14 wow fadeInUp" data-wow-delay="0.3s">Entrypass also supports approved health institutions (e.g. Ministry of Health) by providing a full-scale, user-friendly, digital tool to optimize contact tracing efforts.</p>
+        <p class="fontsize-14 wow mb-30 fadeInUp" data-wow-delay="0.3s">Entrypass helps in the fight against infectious viruses.</p>
         <div class="wow fadeInUp" data-wow-delay="0.4s">
-          <button class="btn widthfit bluebtn">Get Started</button>
+          <button class="btn widthfit bluebtn" (click)="gotosubscription()">Get Started</button>
         </div>
       </div>
       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 rgt-col-sec2">
@@ -190,7 +193,7 @@
           </div>
         </div>
         <div class="text-center">
-          <button class="btn bluebtn widthfit">Get Started</button>
+          <button class="btn bluebtn widthfit" (click)="gotosubscription()">Get Started</button>
         </div>
       </div>
     </div>
@@ -205,13 +208,23 @@
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 wow fadeInUp" data-wow-delay="0.4s" *ngFor="let item of subscriptiondata">
         <div class="hm-pricing-block bgwhite pt-35 pb-50 pl-20 pr-20 text-center">
           <h5 class="fontsize-20 colorblack fontfamily-medium mb-15">{{item.Name}}</h5>
-          <h2 class="fontsize-46 fontfamily-bold colorblue1 mb-45">${{item.Amount}}</h2>
-          <p class="colorblack mb-10">{{item.Description}}</p>    
+          <h2 class="fontsize-36 fontfamily-bold colorblue1 mb-15">$ {{item.Amount.toFixed(2)}} USD</h2>
+          <h5 class="fontsize-18 colorblack fontfamily-medium mb-2" *ngIf="item.Numbermin==item.Numbermax" >{{item.Numbermin}} Account(s)</h5>
+          <h5 class="fontsize-18 colorblack fontfamily-medium mb-2" *ngIf="item.Numbermin != item.Numbermax" >{{item.Numbermin}} to {{item.Numbermax}} Account(s)</h5>
+          <p class="colorblack mb-10 text-left description" [innerHtml]="item.Description"></p>    
           <div class="text-center mt-40">
-            <button class="btn bluebtn width160" (click)="payment(item)">Start Now</button>
+            <button class="btn bluebtn width160"  (click)="payment(item)">Start Now</button>
           </div>
         </div>
       </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <p class="mb-0 colorwhite" style="font-size: 16px;">Entrypass accepts payments via credit card.</p>
+        <p class="mb-0 colorwhite" style="font-size: 16px;">Entrypass also accepts payment via cheque and wire transfer. </p>
+        <p class="mb-0 colorwhite" style="font-size: 16px;">Please note, Entrypass only accepts wire transfers for amounts greater than US$2000.</p>
+        <p class="colorwhite" style="font-size: 16px;">Organizations and institutions which desire to use cheque or wire transfer as a method of payment, should contact us here <a [routerLink]="['/auth/contact']" style="color: red;">Contact Us</a> or send an email to entrypass246@gmail.com.</p>
+      </div>
     </div>
   </div>
 </section>

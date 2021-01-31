@@ -1,0 +1,24 @@
+.btn-sm{
+    padding: .25rem 0rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    height: 36px;
+    width: auto;
+}
+.btn-danger{
+    background: #dc3545;
+}
+fieldset {
+    background-color: #fff;
+    border: 1px solid #4a6076;
+    border-radius: 5px;
+  }
+  
+  legend {
+    background-color: #fff;
+    color: black;
+    padding: 5px 10px;
+    width: auto;
+    margin-left: 15px;
+  }

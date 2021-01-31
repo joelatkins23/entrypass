@@ -85,7 +85,7 @@ export class BusinessComponent implements OnInit {
          "Address2":obj.Address2,
          "Region":obj.Region,
          "Registed Date":obj.CreateAt,
-         "Status":(obj.Status==1)?"Yes":"No"
+         "Status":(obj.Status==1)?"Active":"Not Active"
        }
        exportdata.push(ele);
     });

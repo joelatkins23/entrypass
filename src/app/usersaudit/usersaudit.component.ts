@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 export class UsersauditComponent implements OnInit {
   users= [];
   id:any;
-  public  date_format = 'd MMM yyyy h:mm';
+  public  date_format = 'd MMM yyyy H:mm';
   dtOptions: DataTables.Settings = {};
   constructor(
     private api: ApisService,

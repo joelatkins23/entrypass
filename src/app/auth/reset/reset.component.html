@@ -12,14 +12,15 @@
                   <p class="fontsize-14 fontfamily-medium color4848 mb-50">Enter your new password and confirm to reset</p>
                   <form [formGroup]="form" (ngSubmit)="submit()">
                     <div class="form-group input-rw-tp" [ngClass]="(form.controls['pass'].errors && form.controls['pass'].errors.required && submited) ? 'mb-0':''">
-                      <input name="new_pass" [(ngModel)]="Password"  placeholder="New Password" required type="password" formControlName="pass" class="form-control input-tp-1">
-                      <i class="fa fa-check-circle check-g"></i>
+                      <input name="new_pass" [type]="show ? 'text' : 'password'" [(ngModel)]="Password"  placeholder="New Password" required formControlName="pass" class="form-control input-tp-1">
+                      <i class="fa  check-g" [ngClass]="show ? 'fa-eye-slash' : 'fa-eye'" (click)="passwordhidden()"></i>
                     </div>
                     <div *ngIf="form.controls['pass'].errors && form.controls['pass'].errors.required && submited" class="alert-danger text-left">Password is required</div>
                     <div class="form-group input-rw-tp" [ngClass]="(form.controls['confirm_pass'].errors && form.controls['confirm_pass'].errors.required && submited) ? 'mb-0':''">
-                      <input name="confirm_pass"  [(ngModel)]="ConfirmPassword" placeholder="Confirm Password" required type="password" formControlName="confirm_pass" class="form-control input-tp-1">
-                      <i class="fa fa-check-circle check-g"></i>
-                    </div>                      
+                      <input name="confirm_pass" [type]="conformshow ? 'text' : 'password'"  [(ngModel)]="ConfirmPassword" placeholder="Confirm Password" required  formControlName="confirm_pass" class="form-control input-tp-1">
+                      <i class="fa check-g" class="fa  check-g" [ngClass]="conformshow ? 'fa-eye-slash' : 'fa-eye'" (click)="conformpasswordhidden()"></i>
+                    </div>   
+                                       
                     <div *ngIf="form.controls['confirm_pass'].errors && form.controls['confirm_pass'].errors.required && submited" class="alert-danger text-left">Confirm Password is required</div>
                     <div *ngIf="form.controls['confirm_pass'].errors && form.controls['confirm_pass'].errors.mustMatch && submited" class="alert-danger text-left">Confirm Password has to be equal with Password</div>                  
                     <div class="form-group input-rw-tp mt-30 mb-0">

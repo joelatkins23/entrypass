@@ -8,7 +8,7 @@
 
                 <div class="p-3">
                    
-                    <ckeditor [(ngModel)]="TermsOfUse" readOnly="true" [data]="TermsOfUse" [ngModelOptions]="{standalone: true}" ></ckeditor>
+                    <ckeditor #editor1 [(ngModel)]="TermsOfUse"  [data]="TermsOfUse" [ngModelOptions]="{standalone: true}" ></ckeditor>
                 </div>
             </div>
             <div class="">
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="p-3">
-                    <ckeditor [(ngModel)]="Privacy" readOnly="true" [data]="Privacy" [ngModelOptions]="{standalone: true}" ></ckeditor>                   
+                    <ckeditor #editor2 [(ngModel)]="Privacy"  [data]="Privacy" [ngModelOptions]="{standalone: true}" ></ckeditor>                   
                 </div>
             </div>
             <div class="mt-30 mb-20">

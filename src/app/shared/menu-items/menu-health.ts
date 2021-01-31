@@ -35,9 +35,9 @@ const MENUITEMS = [
     main: [         
       {
         state: 'health_transaction',
-        name: 'Transaction',
+        name: 'Visitor Log',
         type: 'link',
-        icon: 'ti-credit-card'
+        icon: 'ti-mobile'
       }     
     ],
   },  

@@ -1,0 +1,94 @@
+<ngx-spinner type="ball-pulse-sync" color="#e74c3c">
+    <p style="font-size: 20px; color: #e74c3c">{{'Please wait...' | translate}}</p>
+</ngx-spinner>
+<div class="row">
+    <div class="col-md-12">
+        <div class="right-sidebar-content bgwhite boxshadow-2 border-radius8 pt-25 pb-25 pl-40 pr-20">            
+            <div class="row my-5">
+                <div class="col-xl-10 col-lg-10 offset-md-1 col-md-10 col-sm-12 col-12">
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <fieldset>
+                            <legend >Create Admin User</legend>  
+                            <div class="row px-3">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <input type="text" name=""  [(ngModel)]="Name"  [ngModelOptions]="{standalone: true}" placeholder="Name" class="form-control input-tp-1">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <input type="text" name=""  [(ngModel)]="UserName"  [ngModelOptions]="{standalone: true}" placeholder="User Name" class="form-control input-tp-1">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp phone-o-field">
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-5 col-md-12 col-sm-12 col-12 pr-0">
+                                                <div class="relative">
+                                                    <select   [(ngModel)]="DefaultValue" name="phonecode"  [ngModelOptions]="{standalone: true}" class="form-control input-tp-1">
+                                                        <option value="" *ngFor="let item of countries" value="{{item.callingCodes[0]}}">
+                                                        + {{item.callingCodes[0]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{item.name}})
+                                                        </option>
+                                                    </select>
+                                                    <img [src]="getCountry()" class="flag-img">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12">
+                                                <input type="text" name=""   [(ngModel)]="Phone"  [ngModelOptions]="{standalone: true}" placeholder="Phone Number" class="form-control input-tp-1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row px-3"> 
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp"  [ngClass]="(submited && form.controls['email'].invalid) ? 'mb-0':''">
+                                        <input name="email"  placeholder="Email Address"  [(ngModel)]="Email"    required type="text" formControlName="email" class="form-control input-tp-1">
+                                    </div>
+                                    <div *ngIf="submited && form.controls['email'].invalid" class="alert-danger text-left">Email is not valid</div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <input type="date" name=""   [(ngModel)]="Birthday"  [ngModelOptions]="{standalone: true}" placeholder="Birthday" class="form-control input-tp-1">
+                                    </div>
+                                </div>                                                     
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <input type="text" name=""  [(ngModel)]="Address1"  [ngModelOptions]="{standalone: true}" placeholder="Address 1" class="form-control input-tp-1">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <input type="text" name=""  [(ngModel)]="Address2"  [ngModelOptions]="{standalone: true}" placeholder="Address 2" class="form-control input-tp-1">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <input type="text" name=""   [(ngModel)]="Region"  [ngModelOptions]="{standalone: true}" placeholder="State/Parish/Region" class="form-control input-tp-1">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group input-rw-tp">
+                                        <select [(ngModel)]="Country"  [ngModelOptions]="{standalone: true}" class="form-control  input-tp-1">
+                                            <option value="" >Select Country</option>
+                                            <option value="{{item.name}}"  *ngFor="let item of countries">{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="mt-40">
+                            <div class="">
+                                <button type="button" class="btn btn-gray width150 btn-rad-24" (click)="back()">Cancel</button>
+                                <span class="ml-15"><button type="submit" class="btn width150 btn-rad-24" >Save</button></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng2-toasty></ng2-toasty>

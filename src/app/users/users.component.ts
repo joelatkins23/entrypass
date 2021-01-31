@@ -78,12 +78,12 @@ export(){
           "Address2":obj.Address2,
           "Region":obj.Region,
           "Registed Date":obj.CreateAt,
-          "Verified":(obj.Status==1)?"Yes":"No"
+          "Status":(obj.Status==1)? "Active" :"Not Active"
         }
         exportdata.push(ele);
       });
       var filename="User Registration";
-      let csvData = this.ConvertToCSV(exportdata, ['Name','User Name','Email','ExpressId','Gender','Birthday','Phone','TypeId','IdNumber','Country','Address1','Address2','Region','Registed Date','Verified']);
+      let csvData = this.ConvertToCSV(exportdata, ['Name','User Name','Email','ExpressId','Gender','Birthday','Phone','TypeId','IdNumber','Country','Address1','Address2','Region','Registed Date','Status']);
       let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
       let dwldLink = document.createElement("a");
       let url = URL.createObjectURL(blob);

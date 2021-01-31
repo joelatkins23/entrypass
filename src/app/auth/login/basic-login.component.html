@@ -17,8 +17,8 @@
                                         </div>
                                         <div *ngIf="loginform.controls['email'].invalid && submited" class="alert-danger text-left">Email is not valid</div>
                                         <div class="form-group input-rw-tp " [ngClass]="(submited && loginform.controls['password'].invalid)?'mb-0':''">
-                                            <input type="password" name="password" [(ngModel)]="Password"  placeholder="Password"  required  formControlName="password" class="form-control input-tp-1">
-                                            <i class="fa fa-check-circle check-g"></i>
+                                            <input type="password"  [type]="show ? 'text' : 'password'" name="password" [(ngModel)]="Password"  placeholder="Password"  required  formControlName="password" class="form-control input-tp-1">
+                                            <i class="fa  check-g" [ngClass]="show ? 'fa-eye-slash' : 'fa-eye'" (click)="passwordhidden()"></i>
                                         </div>
                                         <div *ngIf="submited && loginform.controls['password'].invalid" class="alert-danger text-left">Password is required</div>   
                                         <div class="forgot-tex text-right">

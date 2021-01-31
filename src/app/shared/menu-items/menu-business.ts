@@ -41,10 +41,16 @@ const MENUITEMS = [
       },     
       {
         state: 'business_transaction',
-        name: 'Transaction',
+        name: 'Visitor Log',
+        type: 'link',
+        icon: 'ti-mobile'
+      },     
+      {
+        state: 'business_payment',
+        name: 'Subscription Payment',
         type: 'link',
         icon: 'ti-credit-card'
-      }     
+      }      
     ],
   },  
 ];

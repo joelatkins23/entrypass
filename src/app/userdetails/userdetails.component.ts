@@ -82,7 +82,7 @@ export class UserdetailsComponent implements OnInit {
           this.Name = res['result'].data.Name;
           this.UserName = res['result'].data.UserName;
           this.Gender = res['result'].data.Gender;
-          this.Birthday = this.datePipe.transform(new Date(res['result'].data.Birthday),"yyyy-MM-dd");
+          this.Birthday = (res['result'].data.Birthday) ? this.datePipe.transform(new Date(res['result'].data.Birthday),"yyyy-MM-dd") :"";
           this.Phone = res['result'].data.Phone;
           this.TypeId = res['result'].data.TypeId;
           this.IdNumber = res['result'].data.IdNumber;

@@ -3,36 +3,46 @@
 </ngx-spinner>
 <div class="row">
     <div class="col-md-12">
-        <div class="right-sidebar-content bgwhite boxshadow-2 border-radius8 pt-25 pb-25 pl-40 pr-20">
-            <div class="mb-40">
-                <div class="ttle-h fontsize-14 fontfamily-medium color333" *ngIf="new">Create Faq</div>
-                <div class="ttle-h fontsize-14 fontfamily-medium color333" *ngIf="!new">Edit Faq</div>
-            </div>
-            <div class="row">
+        <div class="right-sidebar-content bgwhite boxshadow-2 border-radius8 pt-25 pb-25 pl-40 pr-20">            
+            <div class="row my-4">
                 <div class="col-xl-8 col-lg-8  offset-md-2 col-md-8 col-sm-12 col-12">
                     <form>
-                        
-                        <div class="form-group input-rw-tp">
-                            <label for="">Subscription Name</label>
-                            <input type="text"  [(ngModel)]="Name" [ngModelOptions]="{standalone: true}" placeholder="Subscription Name" class="form-control input-tp-1">
-                        </div>
-                        <div class="form-group input-rw-tp">
-                            <label for="">Subscription Amount</label>
-                            <input type="number"  [(ngModel)]="Amount" [ngModelOptions]="{standalone: true}" placeholder="Subscription Amount" class="form-control input-tp-1">
-                        </div>
-                        <div class="form-group input-rw-tp">
-                            <label for="">Benefits</label>
-                            <textarea  [(ngModel)]="Description" [ngModelOptions]="{standalone: true}" cols="30" rows="5" placeholder="Benefits" class="form-control">
-                            </textarea>
-                        </div>                       
-                        <div class="form-group input-rw-tp">
-                            <div class="d-flex ">
-                                <div class="fontfamily-medium fontsize-12 color999">Status</div>
-                                <div class="ml-5">
-                                      <input type="checkbox" [ngModelOptions]="{standalone: true}"  [(ngModel)]="Status" >                                    
+                        <fieldset>
+                            <legend *ngIf="new">Create Subscription</legend>  
+                            <legend *ngIf="!new">Edit Subscription</legend> 
+                            <div class="px-3">
+                                <div class="form-group input-rw-tp">
+                                    <label for="">Subscription Name</label>
+                                    <input type="text"  [(ngModel)]="Name" [ngModelOptions]="{standalone: true}" placeholder="Subscription Name" class="form-control input-tp-1">
                                 </div>
-                            </div>
-                        </div>  
+                                <div class="form-group input-rw-tp">
+                                    <label for="">Subscription Amount</label>
+                                    <input type="number"  [(ngModel)]="Amount" [ngModelOptions]="{standalone: true}" placeholder="Subscription Amount" class="form-control input-tp-1">
+                                </div>
+                                <div class="form-group input-rw-tp">
+                                    <label for="">Min Number of users</label>
+                                    <input type="number"  [(ngModel)]="Numbermin" [ngModelOptions]="{standalone: true}" placeholder="Subscription Amount" class="form-control input-tp-1">
+                                </div>
+                                <div class="form-group input-rw-tp">
+                                    <label for="">Max Number of users</label>
+                                    <input type="number"  [(ngModel)]="Numbermax" [ngModelOptions]="{standalone: true}" placeholder="Subscription Amount" class="form-control input-tp-1">
+                                </div>                        
+                                <div class="form-group input-rw-tp">
+                                    <label for="">Benefits</label>
+                                    <ckeditor #editor1 [(ngModel)]="Description"  [data]="Description" [ngModelOptions]="{standalone: true}" ></ckeditor>
+                                    <!-- <textarea  [(ngModel)]="Description" [ngModelOptions]="{standalone: true}" cols="30" rows="5" placeholder="Benefits" class="form-control">
+                                    </textarea> -->
+                                </div>                       
+                                <div class="form-group input-rw-tp">
+                                    <div class="d-flex ">
+                                        <div class="fontfamily-medium fontsize-12 color999">Status</div>
+                                        <div class="ml-5">
+                                              <input type="checkbox" [ngModelOptions]="{standalone: true}"  [(ngModel)]="Status" >                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                         
+                        </fieldset>  
                         <div class="mt-40">
                             <div class="">
                                 <button class="btn btn-gray width150 btn-rad-24" (click)="back()">Cancel</button>
